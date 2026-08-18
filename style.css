@@ -73,7 +73,38 @@ body {
     opacity: 0.3 !important;
     transition: 0.5s;
 }
+/* ============================================================
+   АДАПТИВ ТАБОВ БРОНИРОВАНИЯ
+   ============================================================ */
 
+@media (max-width: 600px) {
+    .booking-tabs {
+        gap: 3px;
+        padding: 3px;
+        flex-wrap: wrap !important;
+    }
+    
+    .booking-tab {
+        flex: 1 1 30% !important; /* ← ТРИ КНОПКИ В РЯД */
+        min-width: 0 !important;
+        padding: 8px 4px !important;
+        font-size: 11px !important;
+        gap: 4px !important;
+        white-space: nowrap !important;
+    }
+    
+    .booking-tab i {
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .booking-tab {
+        flex: 1 1 100% !important; /* ← КАЖДАЯ КНОПКА НА ОТДЕЛЬНОЙ СТРОКЕ */
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+    }
+}
 /* ============================================================
    ШАПКА
    ============================================================ */
