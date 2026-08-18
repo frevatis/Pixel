@@ -106,6 +106,497 @@ body {
     }
 }
 /* ============================================================
+   АДАПТИВ — ПОЛНОСТЬЮ ИСПРАВЛЕННЫЙ
+   ============================================================ */
+
+/* ===== ТЕЛЕФОНЫ (до 768px) ===== */
+@media (max-width: 768px) {
+    /* ===== ШАПКА ===== */
+    .head {
+        height: 60px !important;
+        padding: 0 8px !important;
+        position: sticky !important;
+        top: 0 !important;
+    }
+
+    .head .container {
+        padding: 0 6px !important;
+        max-width: 100% !important;
+    }
+
+    .con {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 4px !important;
+        width: 100% !important;
+    }
+
+    .logo i {
+        font-size: 18px !important;
+    }
+    .logo span {
+        font-size: 18px !important;
+    }
+
+    .nav-links {
+        display: flex !important;
+        gap: 6px !important;
+        flex-wrap: nowrap !important;
+        order: 2 !important;
+    }
+
+    .nav-links a {
+        font-size: 10px !important;
+        padding: 3px 0 !important;
+        white-space: nowrap !important;
+    }
+
+    .header-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        flex-shrink: 0 !important;
+        order: 3 !important;
+    }
+
+    .btn-login {
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+        border-radius: 20px !important;
+    }
+    .btn-login span {
+        display: none !important;
+    }
+    .btn-login i {
+        font-size: 14px !important;
+    }
+
+    .btn-account {
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+        border-radius: 20px !important;
+    }
+    .btn-account span {
+        font-size: 10px !important;
+        max-width: 50px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+    .btn-account i:first-child {
+        font-size: 12px !important;
+    }
+    .btn-account .fa-chevron-down {
+        font-size: 8px !important;
+    }
+
+    .button-container button a {
+        padding: 4px 10px !important;
+        font-size: 10px !important;
+        border-radius: 20px !important;
+    }
+
+    .user-dropdown {
+        position: relative !important;
+    }
+
+    .dropdown-menu {
+        right: 0 !important;
+        left: auto !important;
+        min-width: 160px !important;
+        top: calc(100% + 4px) !important;
+    }
+
+    .dropdown-item {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+
+    /* ===== ВЫБОР ПК — ИСПРАВЛЕННЫЙ ===== */
+    .pc-select-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 4px !important;
+        margin-top: 8px !important;
+    }
+
+    .pc-option {
+        padding: 6px 2px !important;
+        border-radius: 8px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .pc-option .pc-number {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+    }
+
+    .pc-option .pc-spec {
+        font-size: 7px !important;
+        margin-top: 1px !important;
+        line-height: 1.2 !important;
+    }
+
+    .pc-option span:last-child {
+        font-size: 7px !important;
+        margin-top: 1px !important;
+        line-height: 1.2 !important;
+    }
+
+    /* ===== БРОНИРОВАНИЕ ===== */
+    .booking-card {
+        padding: 16px 12px !important;
+        margin: 0 4px !important;
+    }
+
+    .booking .container {
+        padding: 0 4px !important;
+        max-width: 100% !important;
+    }
+
+    .booking-tabs {
+        gap: 3px !important;
+        padding: 3px !important;
+    }
+
+    .booking-tab {
+        font-size: 10px !important;
+        padding: 6px 3px !important;
+        gap: 3px !important;
+    }
+
+    .booking-tab i {
+        font-size: 10px !important;
+    }
+
+    .form-group label {
+        font-size: 12px !important;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+    }
+
+    .form-row {
+        gap: 8px !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .booking button[type="submit"],
+    #bookingSubmitBtn {
+        padding: 12px !important;
+        font-size: 14px !important;
+        border-radius: 10px !important;
+    }
+
+    .tokens-section {
+        padding: 12px 14px !important;
+        margin: 12px 0 !important;
+        border-radius: 12px !important;
+    }
+
+    .tokens-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+    }
+
+    .tokens-count {
+        font-size: 20px !important;
+    }
+
+    .tokens-label {
+        font-size: 10px !important;
+    }
+
+    .tokens-hint {
+        font-size: 9px !important;
+    }
+
+    .tokens-discount-toggle {
+        padding-left: 8px !important;
+    }
+
+    .discount-label {
+        font-size: 10px !important;
+    }
+
+    .switch {
+        width: 32px !important;
+        height: 18px !important;
+    }
+
+    .slider::before {
+        height: 14px !important;
+        width: 14px !important;
+    }
+
+    .switch input:checked + .slider::before {
+        transform: translateX(14px) !important;
+    }
+
+    .discount-info {
+        padding: 10px 12px !important;
+    }
+
+    .discount-row {
+        font-size: 12px !important;
+    }
+
+    .discount-row.highlight span:last-child {
+        font-size: 14px !important;
+    }
+
+    .booking-price span {
+        font-size: 14px !important;
+    }
+
+    .booking-price strong {
+        font-size: 20px !important;
+    }
+
+    #bookingHistory h3 {
+        font-size: 14px !important;
+    }
+
+    .booking-item {
+        padding: 10px 12px !important;
+        border-radius: 10px !important;
+    }
+
+    .booking-info {
+        font-size: 12px !important;
+        gap: 6px !important;
+    }
+
+    .booking-info strong {
+        font-size: 13px !important;
+    }
+
+    .booking-info span {
+        font-size: 11px !important;
+    }
+
+    /* ===== ГЕРОЙ ===== */
+    .hero h1 {
+        font-size: 36px !important;
+    }
+    .hero-slogan {
+        font-size: 16px !important;
+    }
+    .hero-subtitle {
+        font-size: 14px !important;
+    }
+    .hero-button button a {
+        padding: 10px 20px !important;
+        font-size: 13px !important;
+    }
+    .hero-stats {
+        gap: 12px !important;
+    }
+    .stat-number {
+        font-size: 18px !important;
+    }
+    .stat-label {
+        font-size: 10px !important;
+    }
+
+    /* ===== ЗАГОЛОВКИ ===== */
+    .section-title {
+        font-size: 22px !important;
+    }
+
+    /* ===== КАРТОЧКИ ===== */
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 16px 12px !important;
+    }
+    .card.popular {
+        transform: scale(1) !important;
+    }
+    .pricing-cards {
+        gap: 12px !important;
+    }
+
+    /* ===== СЕТКИ ===== */
+    .contacts-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .reviews-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .pcs-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    .events-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .why-grid,
+    .gallery-grid,
+    .how-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    .games-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* ===== ИГРЫ ===== */
+    .game-image {
+        height: 100px !important;
+    }
+    .game-info {
+        padding: 8px 10px !important;
+    }
+    .game-info h3 {
+        font-size: 12px !important;
+    }
+    .game-meta {
+        font-size: 9px !important;
+        gap: 4px !important;
+    }
+    .game-tags span {
+        font-size: 8px !important;
+        padding: 1px 8px !important;
+    }
+    .game-badge {
+        font-size: 7px !important;
+        padding: 2px 8px !important;
+        top: 6px !important;
+        left: 6px !important;
+    }
+
+    /* ===== ПОДВАЛ ===== */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .footer-desc {
+        max-width: 100% !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 4px !important;
+    }
+    .footer-bottom-links {
+        justify-content: center !important;
+    }
+    .footer-social {
+        justify-content: center !important;
+    }
+
+    /* ===== МОДАЛКА ===== */
+    .modal {
+        padding: 24px 16px !important;
+        max-width: 95% !important;
+        margin: 10px !important;
+    }
+    .modal-tabs .tab-btn {
+        font-size: 12px !important;
+        padding: 8px !important;
+    }
+    .auth-form h3 {
+        font-size: 17px !important;
+    }
+    .auth-form .form-group input {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+    }
+    .auth-form button[type="submit"] {
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* ===== КОД ===== */
+    .code-box {
+        width: 36px !important;
+        height: 42px !important;
+        font-size: 20px !important;
+    }
+    .code-inputs {
+        gap: 4px !important;
+    }
+}
+
+/* ===== МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px) ===== */
+@media (max-width: 480px) {
+    .pc-select-grid {
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 3px !important;
+    }
+
+    .pc-option {
+        padding: 4px 2px !important;
+        min-height: 36px !important;
+        border-radius: 6px !important;
+    }
+
+    .pc-option .pc-number {
+        font-size: 10px !important;
+    }
+
+    .pc-option .pc-spec {
+        font-size: 6px !important;
+    }
+
+    .pc-option span:last-child {
+        font-size: 6px !important;
+    }
+
+    .nav-links a {
+        font-size: 8px !important;
+    }
+
+    .logo i {
+        font-size: 14px !important;
+    }
+    .logo span {
+        font-size: 14px !important;
+    }
+
+    .btn-login i {
+        font-size: 12px !important;
+    }
+    .btn-account span {
+        font-size: 8px !important;
+        max-width: 30px !important;
+    }
+    .btn-account i:first-child {
+        font-size: 10px !important;
+    }
+    .button-container button a {
+        padding: 3px 6px !important;
+        font-size: 8px !important;
+    }
+
+    .booking-tab {
+        font-size: 9px !important;
+        padding: 4px 2px !important;
+    }
+    .booking-tab i {
+        font-size: 8px !important;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 8px 10px !important;
+        font-size: 13px !important;
+    }
+}
+/* ============================================================
    ШАПКА
    ============================================================ */
 .head {
