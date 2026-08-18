@@ -1032,21 +1032,28 @@ const DEVICE_ID = getDeviceId();
 // API — РАБОТА БЕЗ СЕРВЕРА (LOCALSTORAGE)
 // ============================================================
 
+// ============================================================
+// API — РАБОТА БЕЗ СЕРВЕРА (LOCALSTORAGE) С ЛОГАМИ
+// ============================================================
+
 const API_URL = null;
 
 async function apiRequest(endpoint, method = 'POST', data = null) {
-    console.log('📦 API (локальный):', endpoint, data);
+    console.log('📦 API запрос:', endpoint, method, data);
     
     // Имитация задержки
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, 300));
     
-    // ===== ПОЛУЧИТЬ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ =====
+    // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
     function getUsers() {
-        return JSON.parse(localStorage.getItem('users') || '[]');
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        console.log('👥 Пользователи в localStorage:', users);
+        return users;
     }
     
     function saveUsers(users) {
         localStorage.setItem('users', JSON.stringify(users));
+        console.log('💾 Пользователи сохранены:', users);
     }
     
     function getBookings() {
@@ -1061,6 +1068,7 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
     if (endpoint === '/check-email') {
         const users = getUsers();
         const exists = users.some(u => u.email === data.email);
+        console.log('🔍 Проверка email:', data.email, exists ? '❌ Уже есть' : '✅ Свободен');
         if (exists) {
             return { success: false, message: 'Пользователь с таким email уже существует' };
         }
@@ -1070,13 +1078,15 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
     // ===== РЕГИСТРАЦИЯ =====
     if (endpoint === '/register') {
         const users = getUsers();
-        users.push({
+        const newUser = {
             name: data.name,
             email: data.email,
             password: data.password,
             bonuses: 0
-        });
+        };
+        users.push(newUser);
         saveUsers(users);
+        console.log('✅ Пользователь зарегистрирован:', newUser);
         return { success: true };
     }
     
@@ -1084,6 +1094,7 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
     if (endpoint === '/check-login') {
         const users = getUsers();
         const user = users.find(u => u.email === data.email && u.password === data.password);
+        console.log('🔍 Проверка входа:', data.email, user ? '✅ Найден' : '❌ Не найден');
         if (!user) {
             return { success: false, message: 'Неверный email или пароль' };
         }
@@ -1094,6 +1105,7 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
     if (endpoint === '/login') {
         const users = getUsers();
         const user = users.find(u => u.email === data.email && u.password === data.password);
+        console.log('🔑 Вход:', data.email, user ? '✅ Успешно' : '❌ Ошибка');
         if (!user) {
             return { success: false, message: 'Неверный email или пароль' };
         }
@@ -1108,34 +1120,29 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
     }
     
     // ===== БРОНИРОВАНИЯ =====
-    if (endpoint.includes('/bookings')) {
+    if (endpoint === '/bookings/all' || endpoint === '/bookings/' + DEVICE_ID) {
         const bookings = getBookings();
-        
-        // GET — получить все брони
-        if (method === 'GET') {
-            // Если запрос на конкретную бронь
-            if (endpoint !== '/bookings/' + DEVICE_ID && endpoint !== '/bookings/all') {
-                // Пока не реализовано
-            }
-            return { success: true, bookings: bookings };
-        }
-        
-        // POST — создать бронь
-        if (method === 'POST') {
-            const newBooking = {
-                id: Date.now(),
-                ...data,
-                status: 'active',
-                created_at: new Date().toISOString()
-            };
-            bookings.push(newBooking);
-            saveBookings(bookings);
-            return { 
-                success: true, 
-                booking: newBooking,
-                bonus_added: true
-            };
-        }
+        const userBookings = bookings.filter(b => b.device_id === DEVICE_ID && b.status === 'active');
+        console.log('📋 Брони:', userBookings);
+        return { success: true, bookings: userBookings };
+    }
+    
+    if (endpoint === '/bookings' && method === 'POST') {
+        const bookings = getBookings();
+        const newBooking = {
+            id: Date.now(),
+            ...data,
+            status: 'active',
+            created_at: new Date().toISOString()
+        };
+        bookings.push(newBooking);
+        saveBookings(bookings);
+        console.log('✅ Бронь создана:', newBooking);
+        return { 
+            success: true, 
+            booking: newBooking,
+            bonus_added: true
+        };
     }
     
     // ===== ОТМЕНА БРОНИ =====
@@ -1144,6 +1151,7 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
         const id = parseInt(endpoint.split('/').pop());
         bookings = bookings.filter(b => b.id !== id);
         saveBookings(bookings);
+        console.log('🗑️ Бронь отменена:', id);
         return { success: true };
     }
     
@@ -1152,20 +1160,8 @@ async function apiRequest(endpoint, method = 'POST', data = null) {
         let users = getUsers();
         users = users.filter(u => u.email !== data.email);
         saveUsers(users);
+        console.log('🗑️ Аккаунт удалён:', data.email);
         return { success: true };
-    }
-    
-    // ===== ВСЕ БРОНИ (для отображения ПК) =====
-    if (endpoint === '/bookings/all') {
-        const bookings = getBookings();
-        return { success: true, bookings: bookings };
-    }
-    
-    // ===== БРОНИ ПО DEVICE_ID =====
-    if (endpoint === '/bookings/' + DEVICE_ID) {
-        const bookings = getBookings();
-        const userBookings = bookings.filter(b => b.device_id === DEVICE_ID && b.status === 'active');
-        return { success: true, bookings: userBookings };
     }
     
     console.warn('⚠️ Неизвестный endpoint:', endpoint);
