@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пиксель</title>
+    <!-- Flatpickr CSS (тёмная тема) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+
+<body>
+
+    <!-- ===== ФОН — ЯРКИЕ ИКОНКИ ===== -->
+    <div id="background-figures">
+        <i class="fa-solid fa-gamepad figure"></i>
+        <i class="fa-solid fa-gamepad figure"></i>
+        <i class="fa-solid fa-gamepad figure"></i>
+        <i class="fa-solid fa-gamepad figure"></i>
+        <i class="fa-solid fa-joystick figure"></i>
+        <i class="fa-solid fa-joystick figure"></i>
+        <i class="fa-solid fa-joystick figure"></i>
+        <i class="fa-solid fa-arrows-up-down-left-right figure"></i>
+        <i class="fa-solid fa-arrows-up-down-left-right figure"></i>
+        <i class="fa-solid fa-gear figure"></i>
+        <i class="fa-solid fa-gear figure"></i>
+        <i class="fa-solid fa-gear figure"></i>
+        <i class="fa-solid fa-star figure"></i>
+        <i class="fa-solid fa-star figure"></i>
+        <i class="fa-solid fa-star figure"></i>
+        <i class="fa-solid fa-desktop figure"></i>
+        <i class="fa-solid fa-desktop figure"></i>
+        <i class="fa-regular fa-keyboard figure"></i>
+        <i class="fa-regular fa-keyboard figure"></i>
+        <i class="fa-solid fa-computer-mouse figure"></i>
+        <i class="fa-solid fa-headphones figure"></i>
+        <i class="fa-solid fa-headphones figure"></i>
+        <i class="fa-solid fa-microchip figure"></i>
+        <i class="fa-solid fa-microchip figure"></i>
+        <i class="fa-solid fa-sword figure"></i>
+        <i class="fa-solid fa-trophy figure"></i>
+        <i class="fa-solid fa-bolt figure"></i>
+        <i class="fa-solid fa-bolt figure"></i>
+        <i class="fa-solid fa-cube figure"></i>
+        <i class="fa-solid fa-cube figure"></i>
+        <i class="fa-solid fa-rocket figure"></i>
+        <i class="fa-solid fa-compass figure"></i>
+        <i class="fa-solid fa-crown figure"></i>
+        <i class="fa-solid fa-terminal figure"></i>
+        <i class="fa-solid fa-code figure"></i>
+        <i class="fa-solid fa-shield-halved figure"></i>
+        <i class="fa-solid fa-skull figure"></i>
+        <i class="fa-solid fa-wand-sparkles figure"></i>
+    </div>
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="head">
+        <div class="container">
+            <div class="con">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Пиксель</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="#hero" class="active">Главная</a>
+                    <a href="#pricing">Цены</a>
+                    <a href="#booking">Бронирование</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="#games">Игры</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="user-menu-wrapper" id="userMenuWrapper">
+                        <button class="btn-login" id="loginBtn">
+                            <i class="fa-solid fa-user"></i> <span>Войти</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown" style="display:none;">
+                            <button class="btn-account" id="userProfileBtn">
+                                <i class="fa-solid fa-user" style="color:#6c63ff;"></i>
+                                <span id="userNameDisplay"></span>
+                                <i class="fa-solid fa-chevron-down"
+                                    style="font-size:10px; margin-left:4px; color:rgba(255,255,255,0.3);"></i>
+                            </button>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <div class="dropdown-header">
+                                    <span id="dropdownUserName"></span>
+                                    <span class="dropdown-balance" id="dropdownBalance"><i
+                                            class="fa-solid fa-coins"></i> 0 бонусов</span>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item" id="profileDashboard"><i
+                                        class="fa-solid fa-gauge-high"></i> Панель управления</a>
+                                <a href="#" class="dropdown-item" id="profileBookings"><i class="fa-solid fa-list"></i>
+                                    Мои брони</a>
+                                <a href="#" class="dropdown-item" id="profileHistory"><i
+                                        class="fa-solid fa-clock-rotate-left"></i> История</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item" id="profileStats"><i
+                                        class="fa-solid fa-chart-simple"></i> Статистика</a>
+                                <a href="#" class="dropdown-item" id="profileDiscount"><i
+                                        class="fa-solid fa-percent"></i> Скидка</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item" id="profileLogout"><i
+                                        class="fa-solid fa-right-from-bracket"></i> Выйти</a>
+                                <a href="#" class="dropdown-item dropdown-item-danger" id="profileDelete"><i
+                                        class="fa-solid fa-trash-can"></i> Удалить аккаунт</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button><a href="#booking">Забронировать</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== МОДАЛКИ ===== -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="login">Вход</button>
+                <button class="tab-btn" data-tab="register">Регистрация</button>
+            </div>
+            <form id="loginForm" class="auth-form active" autocomplete="off">
+                <h3>Вход</h3>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="email@example.com" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required
+                        autocomplete="new-password">
+                </div>
+                <button type="submit">Войти</button>
+                <p class="auth-switch">Нет аккаунта? <a href="#" data-tab="register">Зарегистрироваться</a></p>
+            </form>
+            <form id="registerForm" class="auth-form" autocomplete="off">
+                <h3>Регистрация</h3>
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input type="text" id="regName" placeholder="Иван" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="email@example.com" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required autocomplete="new-password">
+                </div>
+                <button type="submit">Зарегистрироваться</button>
+                <p class="auth-switch">Уже есть аккаунт? <a href="#" data-tab="login">Войти</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="codeModal">
+        <div class="modal modal-code">
+            <button class="modal-close" id="closeCodeModal"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="codeModalTitle">Подтверждение</h3>
+            <p id="codeModalDesc">Введите код из письма</p>
+            <div class="code-inputs">
+                <input type="text" maxlength="1" class="code-box" data-index="0">
+                <input type="text" maxlength="1" class="code-box" data-index="1">
+                <input type="text" maxlength="1" class="code-box" data-index="2">
+                <input type="text" maxlength="1" class="code-box" data-index="3">
+                <input type="text" maxlength="1" class="code-box" data-index="4">
+                <input type="text" maxlength="1" class="code-box" data-index="5">
+            </div>
+            <button id="submitCodeBtn">Подтвердить</button>
+            <button id="resendCodeBtn" class="btn-resend"><i class="fa-solid fa-envelope"></i> Отправить код
+                повторно</button>
+        </div>
+    </div>
+
+    <!-- ===== ГЕРОЙ ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> Работаем круглосуточно</div>
+            <h1>Пиксель</h1>
+            <p class="hero-slogan">Играй. Побеждай.</p>
+            <p class="hero-subtitle">ПК-клуб в Мамадыше. 10 мощных компьютеров для игр и работы.</p>
+            <div class="hero-button">
+                <button><a href="#booking">Забронировать <i class="fa-solid fa-arrow-right"></i></a></button>
+                <a href="#pricing" class="hero-link">Смотреть цены <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item"><span class="stat-number">10</span><span class="stat-label">Мощных ПК</span>
+                </div>
+                <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">Работаем
+                        всегда</span></div>
+                <div class="stat-item"><span class="stat-number">RTX 40</span><span class="stat-label">Видеокарты</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ЦЕНЫ ===== -->
+    <section class="pricing" id="pricing">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-gamepad"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Цены</h2>
+        <div class="pricing-cards">
+            <div class="card animate-on-scroll delay-1">
+                <div class="card-icon"><i class="fa-regular fa-clock"></i></div>
+                <h3>Час</h3>
+                <p class="price">150 <span>₽/час</span></p>
+                <ul class="card-features">
+                    <li><i class="fa-solid fa-check"></i> Игровая сессия</li>
+                    <li><i class="fa-solid fa-check"></i> Полный доступ</li>
+                    <li><i class="fa-solid fa-check"></i> Напиток в подарок</li>
+                </ul>
+                <a href="#booking" class="btn-card">Выбрать</a>
+            </div>
+            <div class="card popular animate-on-scroll delay-2">
+                <div class="card-icon"><i class="fa-regular fa-moon"></i></div>
+                <h3>Ночь</h3>
+                <p class="price">1500 <span>₽/ночь</span></p>
+                <ul class="card-features">
+                    <li><i class="fa-solid fa-check"></i> С 22:00 до 08:00</li>
+                    <li><i class="fa-solid fa-check"></i> Скидка 10%</li>
+                    <li><i class="fa-solid fa-check"></i> Энергетик в подарок</li>
+                </ul>
+                <a href="#booking" class="btn-card">Выбрать</a>
+            </div>
+            <div class="card animate-on-scroll delay-3">
+                <div class="card-icon"><i class="fa-regular fa-sun"></i></div>
+                <h3>Выходные</h3>
+                <p class="price">1000 <span>₽/день</span></p>
+                <ul class="card-features">
+                    <li><i class="fa-solid fa-check"></i> Суббота и воскресенье</li>
+                    <li><i class="fa-solid fa-check"></i> Безлимит времени</li>
+                    <li><i class="fa-solid fa-check"></i> Снеки в подарок</li>
+                </ul>
+                <a href="#booking" class="btn-card">Выбрать</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПРЕИМУЩЕСТВА ===== -->
+    <section class="features" id="features">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-joystick"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Почему мы</h2>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll delay-1">
+                <div class="icon-wrap"><i class="fa-solid fa-microchip"></i></div>
+                <h3>Мощные ПК</h3>
+                <p>RTX 4080, i9, 64GB RAM</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-2">
+                <div class="icon-wrap"><i class="fa-solid fa-chair"></i></div>
+                <h3>Удобные кресла</h3>
+                <p>Игровые кресла DXRacer</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-3">
+                <div class="icon-wrap"><i class="fa-solid fa-mug-saucer"></i></div>
+                <h3>Напитки и снеки</h3>
+                <p>Энергетики, чай, кофе</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-1">
+                <div class="icon-wrap"><i class="fa-solid fa-wifi"></i></div>
+                <h3>Быстрый интернет</h3>
+                <p>1 Гбит/с без лагов</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-2">
+                <div class="icon-wrap"><i class="fa-solid fa-shield"></i></div>
+                <h3>Безопасность</h3>
+                <p>Видеонаблюдение 24/7</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-3">
+                <div class="icon-wrap"><i class="fa-solid fa-users"></i></div>
+                <h3>Дружная атмосфера</h3>
+                <p>Турниры и мероприятия</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== БРОНИРОВАНИЕ ===== -->
+    <section class="booking" id="booking">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-calendar-check"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Бронирование</h2>
+        <div class="container">
+            <div class="booking-card animate-on-scroll">
+
+                <!-- ===== СЛОТЫ (ТАБЫ) ===== -->
+                <div class="booking-tabs">
+                    <button class="booking-tab active" data-slot="hour">
+                        <i class="fa-regular fa-clock"></i> Час
+                    </button>
+                    <button class="booking-tab" data-slot="night">
+                        <i class="fa-regular fa-moon"></i> Ночь
+                    </button>
+                    <button class="booking-tab" data-slot="weekend">
+                        <i class="fa-regular fa-calendar"></i> Выходные
+                    </button>
+                </div>
+
+                <div id="bookingProtected">
+                    <div id="bookingFormWrapper">
+                        <form id="bookingForm">
+                            <div class="form-group">
+                                <label for="bookName">Ваше имя</label>
+                                <input type="text" id="bookName" required readonly
+                                    style="background:rgba(255,255,255,0.03); cursor:default; color:#fff; opacity:0.8;">
+                            </div>
+                            <div class="form-group">
+                                <label for="bookPhone">Телефон</label>
+                                <input type="tel" id="bookPhone" placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <!-- ===== СЛОТ "ЧАС" ===== -->
+                            <div class="slot-content active" id="slot-hour">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="bookDateHour">Дата</label>
+                                        <input type="text" id="bookDateHour" placeholder="Выберите дату" readonly
+                                            style="cursor:pointer;" class="datepicker-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookTimeHour">Время</label>
+                                        <select id="bookTimeHour" class="time-select">
+                                            <option value="">Выберите время</option>
+                                            <option value="17:00">17:00</option>
+                                            <option value="17:30">17:30</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="18:30">18:30</option>
+                                            <option value="19:00">19:00</option>
+                                            <option value="19:30">19:30</option>
+                                            <option value="20:00">20:00</option>
+                                            <option value="20:30">20:30</option>
+                                            <option value="21:00">21:00</option>
+                                            <option value="21:30">21:30</option>
+                                            <option value="22:00">22:00</option>
+                                            <option value="22:30">22:30</option>
+                                            <option value="23:00">23:00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Количество часов</label>
+                                    <select id="bookDurationHour" required class="time-select">
+                                        <option value="1">1 час — 150 ₽</option>
+                                        <option value="2">2 часа — 300 ₽</option>
+                                        <option value="3">3 часа — 450 ₽</option>
+                                        <option value="4">4 часа — 600 ₽</option>
+                                        <option value="6">6 часов — 900 ₽</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- ===== СЛОТ "НОЧЬ" ===== -->
+                            <div class="slot-content" id="slot-night" style="display:none;">
+                                <div class="form-group">
+                                    <label for="bookDateNight">Дата</label>
+                                    <input type="text" id="bookDateNight" placeholder="Выберите дату" readonly
+                                        style="cursor:pointer;" class="datepicker-input">
+                                </div>
+                                <div class="slot-info">
+                                    <p><i class="fa-solid fa-clock" style="color:#6c63ff;"></i> С 22:00 до 08:00</p>
+                                    <p><i class="fa-solid fa-tag" style="color:#6c63ff;"></i> Фиксированная цена: 1500 ₽
+                                    </p>
+                                    <p><i class="fa-solid fa-gift" style="color:#6c63ff;"></i> Энергетик в подарок</p>
+                                </div>
+                                <input type="hidden" id="bookDurationNight" value="10">
+                                <input type="hidden" id="bookTimeNight" value="22:00">
+                            </div>
+
+                            <!-- ===== СЛОТ "ВЫХОДНЫЕ" ===== -->
+                            <div class="slot-content" id="slot-weekend" style="display:none;">
+                                <div class="form-group">
+                                    <label for="bookDateWeekend">Дата (суббота или воскресенье)</label>
+                                    <input type="text" id="bookDateWeekend" placeholder="Выберите дату" readonly
+                                        style="cursor:pointer;" class="datepicker-input">
+                                </div>
+                                <div class="slot-info">
+                                    <p><i class="fa-solid fa-clock" style="color:#6c63ff;"></i> Круглосуточно</p>
+                                    <p><i class="fa-solid fa-tag" style="color:#6c63ff;"></i> Фиксированная цена: 1000 ₽
+                                    </p>
+                                    <p><i class="fa-solid fa-gift" style="color:#6c63ff;"></i> Снеки в подарок</p>
+                                </div>
+                                <input type="hidden" id="bookDurationWeekend" value="24">
+                                <input type="hidden" id="bookTimeWeekend" value="00:00">
+                            </div>
+
+                            <!-- ===== ВЫБОР ПК ===== -->
+                            <div class="form-group">
+                                <label>Выберите компьютер</label>
+                                <div class="pc-select-grid" id="pcGrid"></div>
+                                <input type="hidden" id="selectedPC" value="">
+                            </div>
+
+                            <!-- ===== ТОКЕНЫ / БОНУСЫ ===== -->
+                            <div class="tokens-section" id="tokensSection">
+                                <div class="tokens-display">
+                                    <div class="tokens-icon">
+                                        <i class="fa-solid fa-coins"></i>
+                                    </div>
+                                    <div class="tokens-info">
+                                        <span class="tokens-label">
+                                            Доступно токенов
+                                            <span class="tokens-help" id="tokensHelpBtn">
+                                                <i class="fa-regular fa-circle-question"></i>
+                                            </span>
+                                        </span>
+                                        <span class="tokens-count" id="bookingTokensCount">0</span>
+                                        <span class="tokens-hint">100 токенов = 10% скидки</span>
+                                    </div>
+                                    <div class="tokens-discount-toggle">
+                                        <label class="switch">
+                                            <input type="checkbox" id="useTokensToggle">
+                                            <span class="slider"></span>
+                                        </label>
+                                        <span class="discount-label">
+                                            <i class="fa-solid fa-percent"></i> Скидка
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="discount-info" id="discountInfo" style="display:none;">
+                                    <div class="discount-row">
+                                        <span>🪙 Токенов к списанию:</span>
+                                        <span id="tokensToUse">0</span>
+                                    </div>
+                                    <div class="discount-row">
+                                        <span>📉 Скидка:</span>
+                                        <span id="discountPercent">0%</span>
+                                    </div>
+                                    <div class="discount-row highlight">
+                                        <span>💳 Цена со скидкой:</span>
+                                        <span id="discountPrice">0 ₽</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookComment">Комментарий</label>
+                                <input type="text" id="bookComment" placeholder="Пожелания...">
+                            </div>
+
+                            <!-- ===== ЦЕНА ===== -->
+                            <div class="booking-price" id="bookingPrice">
+                                <span>Итого: <strong id="totalPrice">150 ₽</strong></span>
+                            </div>
+
+                            <button type="submit" id="bookingSubmitBtn">Забронировать сейчас</button>
+                        </form>
+                    </div>
+                    <div id="bookingLoginRequired" style="display:none; text-align:center; padding:40px 20px;">
+                        <i class="fa-solid fa-lock" style="font-size:48px; color:#6c63ff; margin-bottom:16px;"></i>
+                        <h3 style="color:#fff; margin-bottom:12px;">Войдите в аккаунт</h3>
+                        <p style="color:rgba(255,255,255,0.4); margin-bottom:24px;">Чтобы бронировать компьютер,
+                            войдите или зарегистрируйтесь</p>
+                        <button onclick="document.getElementById('loginBtn').click()"
+                            style="padding:12px 32px; background:linear-gradient(135deg,#6c63ff,#00d4ff); border:none; border-radius:50px; color:#fff; font-weight:600; cursor:pointer;">Войти</button>
+                    </div>
+                </div>
+
+                <div id="bookingHistory">
+                    <h3>Ваши бронирования</h3>
+                    <div id="bookingList"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ОТЗЫВЫ ===== -->
+    <section class="reviews" id="reviews">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-comment"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Отзывы</h2>
+        <div class="reviews-grid">
+            <div class="review-card animate-on-scroll delay-1">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Лучший ПК-клуб в Мамадыше! Компьютеры мощные, атмосфера крутая."</p>
+                <div class="author">
+                    <div class="avatar">А</div>
+                    <div>
+                        <div class="name">Алексей</div>
+                        <div class="role">Киберспортсмен</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card animate-on-scroll delay-2">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Отличное место для игр с друзьями. Удобные кресла, быстрый интернет."</p>
+                <div class="author">
+                    <div class="avatar">М</div>
+                    <div>
+                        <div class="name">Мария</div>
+                        <div class="role">Студентка</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card animate-on-scroll delay-3">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Здесь я выиграл свой первый турнир. Прекрасный персонал и условия."</p>
+                <div class="author">
+                    <div class="avatar">Д</div>
+                    <div>
+                        <div class="name">Дмитрий</div>
+                        <div class="role">Стример</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== НАШИ ПК ===== -->
+    <section class="pcs" id="pcs">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-desktop"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Наши компьютеры</h2>
+        <div class="pcs-grid">
+            <div class="pc-card animate-on-scroll delay-1">
+                <div class="pc-icon"><i class="fa-solid fa-computer"></i></div>
+                <h3>RTX 4080</h3>
+                <p>Intel i9, 64GB RAM, SSD 2TB</p>
+            </div>
+            <div class="pc-card animate-on-scroll delay-2">
+                <div class="pc-icon"><i class="fa-solid fa-computer"></i></div>
+                <h3>RTX 4090</h3>
+                <p>Intel i9, 64GB RAM, SSD 2TB</p>
+            </div>
+            <div class="pc-card animate-on-scroll delay-3">
+                <div class="pc-icon"><i class="fa-solid fa-computer"></i></div>
+                <h3>RTX 4070 Ti</h3>
+                <p>Intel i7, 32GB RAM, SSD 1TB</p>
+            </div>
+            <div class="pc-card animate-on-scroll delay-1">
+                <div class="pc-icon"><i class="fa-solid fa-computer"></i></div>
+                <h3>RTX 4080</h3>
+                <p>Intel i9, 64GB RAM, SSD 2TB</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== МЕРОПРИЯТИЯ ===== -->
+    <section class="events" id="events">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-trophy"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Мероприятия</h2>
+        <div class="events-grid">
+            <div class="event-card animate-on-scroll delay-1">
+                <div class="event-date">28 июня 2026</div>
+                <h3>Dota 2 Турнир</h3>
+                <p>Призовой фонд 50 000 ₽</p>
+            </div>
+            <div class="event-card animate-on-scroll delay-2">
+                <div class="event-date">12 июля 2026</div>
+                <h3>CS2 Чемпионат</h3>
+                <p>Призовой фонд 30 000 ₽</p>
+            </div>
+            <div class="event-card animate-on-scroll delay-3">
+                <div class="event-date">05 августа 2026</div>
+                <h3>Valorant Night</h3>
+                <p>Призовой фонд 20 000 ₽</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== УСТАНОВЛЕННЫЕ ИГРЫ ===== -->
+    <section class="games" id="games">
+        <div class="section-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-gamepad"></i>
+            <span class="line"></span>
+        </div>
+        <h2 class="section-title">Установленные игры</h2>
+        <p style="text-align:center; color:rgba(255,255,255,0.4); margin-bottom:40px; font-size:16px;">
+            Более 50 игр на каждом ПК. Играй во что хочешь!
+        </p>
+
+        <div class="games-grid" id="gamesGrid">
+            <div class="game-card animate-on-scroll delay-1">
+                <div class="game-image">
+                    <img src="https://static.wikia.nocookie.net/counterstrike/images/a/a5/Cs2_boxart.webp/revision/latest?cb=20230617064730&path-prefix=ru"
+                        alt="Counter-Strike 2" loading="lazy">
+                    <span class="game-badge">Популярная</span>
+                </div>
+                <div class="game-info">
+                    <h3>Counter-Strike 2</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 100+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 256 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Шутер</span>
+                        <span>Киберспорт</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-2">
+                <div class="game-image">
+                    <img src="https://cdn.steamstatic.com/apps/dota2/images/dota2_social.jpg" alt="Dota 2"
+                        loading="lazy">
+                    <span class="game-badge">Топ-1</span>
+                </div>
+                <div class="game-info">
+                    <h3>Dota 2</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 80+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 180 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>MOBA</span>
+                        <span>Стратегия</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-3">
+                <div class="game-image">
+                    <img src="https://ss.sport-express.ru/userfiles/materials/218/2187795/900x900.jpg" alt="Valorant"
+                        loading="lazy">
+                    <span class="game-badge">Новинка</span>
+                </div>
+                <div class="game-info">
+                    <h3>Valorant</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 60+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 142 игрока</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Шутер</span>
+                        <span>Тактика</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-1">
+                <div class="game-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsL-vqSR5wKrWsE-ugY1vcsBVI7i57g3eS-yZTjc_nkrtMMU8zNjs3GLc&s=10"
+                        alt="GTA V" loading="lazy">
+                    <span class="game-badge">Хит</span>
+                </div>
+                <div class="game-info">
+                    <h3>GTA V</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 120+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 95 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Экшен</span>
+                        <span>Открытый мир</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-2">
+                <div class="game-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAdbz-HaIzQgRkjd6ybiGqDmJhvWFd7Z2LIDNil5_qJpQRIK1CluULIqQq&s=10"
+                        alt="Cyberpunk 2077" loading="lazy">
+                    <span class="game-badge">Рекомендуем</span>
+                </div>
+                <div class="game-info">
+                    <h3>Cyberpunk 2077</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 90+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 78 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>RPG</span>
+                        <span>Киберпанк</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-3">
+                <div class="game-image">
+                    <img src="https://s3.exnode.ru/community-webp/b1233e06-16de-4fab-94b8-61c74d030366"
+                        alt="Apex Legends" loading="lazy">
+                    <span class="game-badge">Популярная</span>
+                </div>
+                <div class="game-info">
+                    <h3>Apex Legends</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 50+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 65 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Battle Royale</span>
+                        <span>Шутер</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-grid games-hidden" id="gamesHidden">
+            <div class="game-card animate-on-scroll delay-1">
+                <div class="game-image">
+                    <img src="https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000033071/3f7ee6aa3482b514bd443e116022b038a9728f017916ed37da3f09f731a7d5f2"
+                        alt="The Witcher 3" loading="lazy">
+                    <span class="game-badge">Хит</span>
+                </div>
+                <div class="game-info">
+                    <h3>The Witcher 3</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 70+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 45 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>RPG</span>
+                        <span>Открытый мир</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-2">
+                <div class="game-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlWgxmDQ7xT3SzSCiXG_nzytrhXRiXQc1hYo4BBn99lQ&s=10"
+                        alt="Fortnite" loading="lazy">
+                    <span class="game-badge">Популярная</span>
+                </div>
+                <div class="game-info">
+                    <h3>Fortnite</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 60+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 120 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Battle Royale</span>
+                        <span>Строительство</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-3">
+                <div class="game-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwVW7OBbTbWPx7rxJ8DmPtRU7GawQMLQfTMBHcOMqXoA&s"
+                        alt="Far Cry 6" loading="lazy">
+                    <span class="game-badge">Новинка</span>
+                </div>
+                <div class="game-info">
+                    <h3>Far Cry 6</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 40+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 32 игрока</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Экшен</span>
+                        <span>Открытый мир</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-1">
+                <div class="game-image">
+                    <img src="https://coddyschool.com/upload/files/blog/1mfb.png" alt="Minecraft" loading="lazy">
+                    <span class="game-badge">Классика</span>
+                </div>
+                <div class="game-info">
+                    <h3>Minecraft</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 200+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 88 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Выживание</span>
+                        <span>Строительство</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-2">
+                <div class="game-image">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/aea6b8bfa41679dfc5230e3cd07a4c688ebf05ac/capsule_616x353_alt_assets_24.jpg?t=1786117431"
+                        alt="Rainbow Six Siege" loading="lazy">
+                    <span class="game-badge">Киберспорт</span>
+                </div>
+                <div class="game-info">
+                    <h3>Rainbow Six Siege</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 55+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 67 игроков</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Шутер</span>
+                        <span>Тактика</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card animate-on-scroll delay-3">
+                <div class="game-image">
+                    <img src="https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg?resize=1&w=480&h=270&quality=medium"
+                        alt="Red Dead Redemption 2" loading="lazy">
+                    <span class="game-badge">Шедевр</span>
+                </div>
+                <div class="game-info">
+                    <h3>Red Dead Redemption 2</h3>
+                    <div class="game-meta">
+                        <span><i class="fa-regular fa-clock"></i> 80+ часов</span>
+                        <span><i class="fa-regular fa-user"></i> 41 игрок</span>
+                    </div>
+                    <div class="game-tags">
+                        <span>Приключения</span>
+                        <span>Открытый мир</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+            <button class="btn-all-games" id="showAllGamesBtn">
+                <i class="fa-solid fa-arrow-down"></i> Смотреть все игры
+            </button>
+        </div>
+        <div style="text-align:center; margin-top:20px; display:none;" id="hideGamesBtnWrapper">
+            <button class="btn-all-games btn-hide-games" id="hideGamesBtn">
+                <i class="fa-solid fa-arrow-up"></i> Свернуть
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== КОНТАКТЫ ===== -->
+    <section class="contacts" id="contacts">
+        <div class="section-divider"><span class="line"></span><i class="fa-solid fa-location-dot"></i><span
+                class="line"></span></div>
+        <h2 class="section-title">Контакты</h2>
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contact-info animate-on-scroll delay-1">
+                    <h3>Найдите нас</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> г. Мамадыш, ул. Советская, 40</p>
+                    <p><i class="fa-solid fa-phone"></i> +7 (927) 123-45-67</p>
+                    <p><i class="fa-solid fa-clock"></i> Круглосуточно</p>
+                </div>
+                <div class="social-media animate-on-scroll delay-2">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== КАРТА ===== -->
+    <section class="map-section" id="map">
+        <div class="section-divider">
+            <span class="line"></span>
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="line"></span>
+        </div>
+        <h2 class="section-title">Как нас найти</h2>
+        <div class="container">
+            <div class="map-container animate-on-scroll">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=51.410184%2C55.718078&z=18&pt=51.410184,55.718078,flag"
+                    width="100%" height="350" frameborder="0"
+                    style="border-radius:16px; border:1px solid rgba(255,255,255,0.06);" allowfullscreen>
+                </iframe>
+                <div
+                    style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; flex-wrap:wrap; gap:8px;">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 14px; margin:0;">
+                        <i class="fa-solid fa-location-dot" style="color: #6c63ff;"></i>
+                        г. Мамадыш, ул. Советская, 40
+                    </p>
+                    <a href="https://yandex.ru/maps/20015/mamadysh/house/sovetskaya_ulitsa_40/?ll=51.410184%2C55.718078&z=20"
+                        target="_blank" style="color: #6c63ff; text-decoration:none; font-size:13px; transition:0.3s;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Открыть в Яндекс.Картах
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПОДВАЛ ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Пиксель</span>
+                    </div>
+                    <p class="footer-desc">
+                        ПК-клуб в Мамадыше. 10 мощных компьютеров
+                        для игр и работы. Играй, побеждай!
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Быстрые ссылки</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero"><i class="fa-solid fa-chevron-right"></i> Главная</a></li>
+                        <li><a href="#pricing"><i class="fa-solid fa-chevron-right"></i> Цены</a></li>
+                        <li><a href="#booking"><i class="fa-solid fa-chevron-right"></i> Бронирование</a></li>
+                        <li><a href="#games"><i class="fa-solid fa-chevron-right"></i> Игры</a></li>
+                        <li><a href="#contacts"><i class="fa-solid fa-chevron-right"></i> Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul class="footer-contacts">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>г. Мамадыш, ул. Советская, 40</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+79271234567">+7 (927) 123-45-67</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:info@pixel-club.ru">info@pixel-club.ru</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Круглосуточно</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Будь в курсе</h4>
+                    <p class="footer-subscribe-text">
+                        Подпишись на новости о турнирах и акциях
+                    </p>
+                    <form class="footer-subscribe" id="footerSubscribeForm">
+                        <input type="email" placeholder="Ваш Email" required>
+                        <button type="submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div class="footer-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Мы не спамим</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 <span class="footer-brand">Пиксель</span>. Все права защищены.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <span class="divider">|</span>
+                    <a href="#">Условия использования</a>
+                    <span class="divider">|</span>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== МОДАЛКА УДАЛЕНИЯ ===== -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal modal-code">
+            <button class="modal-close" id="closeDeleteModal"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Удаление аккаунта</h3>
+            <p style="color:rgba(255,255,255,0.4); font-size:14px; margin-bottom:20px;">Введите код из письма для
+                подтверждения удаления</p>
+            <div class="code-inputs">
+                <input type="text" maxlength="1" class="delete-code-box" data-index="0">
+                <input type="text" maxlength="1" class="delete-code-box" data-index="1">
+                <input type="text" maxlength="1" class="delete-code-box" data-index="2">
+                <input type="text" maxlength="1" class="delete-code-box" data-index="3">
+                <input type="text" maxlength="1" class="delete-code-box" data-index="4">
+                <input type="text" maxlength="1" class="delete-code-box" data-index="5">
+            </div>
+            <button id="submitDeleteBtn"
+                style="width:100%; padding:14px; background:linear-gradient(135deg,#ff6b6b,#ee5a24); border:none; border-radius:10px; color:#fff; font-size:16px; font-weight:600; cursor:pointer; transition:0.3s;">Удалить
+                аккаунт</button>
+            <button id="resendDeleteCode" class="btn-resend" style="width:100%; margin-top:8px;"><i
+                    class="fa-solid fa-envelope"></i> Отправить код повторно</button>
+        </div>
+    </div>
+
+    <!-- ===== JS ===== -->
+    <script>
+   // ============================================================
+// EMAILJS
+// ============================================================
+const EMAILJS_CONFIG = {
+    publicKey: 'dZz1vc1-WF_D6Tv05',
+    serviceID: 'service_k5x9aev',
+    templateID: 'template_g4eck96'
+};
+
+emailjs.init(EMAILJS_CONFIG.publicKey);
+
+async function sendCodeEmail(email, code, action) {
+    try {
+        const result = await emailjs.send(
+            EMAILJS_CONFIG.serviceID,
+            EMAILJS_CONFIG.templateID,
+            { email: email, code: code, action: action }
+        );
+        return result.status === 200;
+    } catch (error) {
+        console.error('EmailJS Error:', error);
+        return false;
+    }
+}
+
+// ============================================================
+// УНИКАЛЬНЫЙ ID УСТРОЙСТВА
+// ============================================================
+function getDeviceId() {
+    let deviceId = localStorage.getItem('deviceId');
+    if (!deviceId) {
+        deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('deviceId', deviceId);
+    }
+    return deviceId;
+}
+const DEVICE_ID = getDeviceId();
+
+// ============================================================
+// API
+// ============================================================
+const API_URL = 'http://127.0.0.1:5000/api';
+
+async function apiRequest(endpoint, method = 'POST', data = null) {
+    const options = {
+        method: method,
+        headers: { 'Content-Type': 'application/json' }
+    };
+    if (data) options.body = JSON.stringify(data);
+    try {
+        const response = await fetch(API_URL + endpoint, options);
+        return await response.json();
+    } catch (error) {
+        console.error('API Error:', error);
+        return { success: false, message: 'Ошибка соединения с сервером' };
+    }
+}
+
+// ============================================================
+// КАСТОМНОЕ МОДАЛЬНОЕ ОКНО
+// ============================================================
+function showCustomModal(title, message, type = 'success') {
+    const oldModal = document.querySelector('.custom-modal-overlay');
+    if (oldModal) oldModal.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-modal-overlay';
+    overlay.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+        z-index: 9999; display: flex; justify-content: center; align-items: center;
+        animation: fadeInModal 0.3s ease;
+    `;
+    const colors = { success: '#6c63ff', error: '#ff6b6b', info: '#00d4ff' };
+    const icons = { success: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
+    const box = document.createElement('div');
+    box.style.cssText = `
+        background: #1a1a2e; border: 1px solid ${colors[type] || '#6c63ff'}33;
+        border-radius: 20px; padding: 40px; max-width: 420px; width: 90%;
+        text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        animation: slideUpModal 0.3s ease;
+    `;
+    box.innerHTML = `
+        <i class="fa-solid ${icons[type] || icons.success}" style="font-size:48px; color:${colors[type] || '#6c63ff'}; margin-bottom:16px;"></i>
+        <h3 style="color: #fff; font-size: 20px; margin-bottom: 10px;">${title}</h3>
+        <p style="color: rgba(255,255,255,0.5); font-size: 15px; margin-bottom: 24px; line-height:1.5;">${message}</p>
+        <button id="modalOkBtn" style="
+            padding: 12px 40px;
+            background: linear-gradient(135deg, ${colors[type] || '#6c63ff'}, ${colors[type] === '#ff6b6b' ? '#ff6b6b' : '#00d4ff'});
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        ">OK</button>
+    `;
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUpModal { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    `;
+    document.head.appendChild(style);
+
+    document.getElementById('modalOkBtn').addEventListener('click', function() {
+        overlay.remove();
+        style.remove();
+    });
+
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            overlay.remove();
+            style.remove();
+        }
+    });
+}
+
+// ============================================================
+// КОД ПОДТВЕРЖДЕНИЯ
+// ============================================================
+const codeInputs = document.querySelectorAll('.code-box');
+if (codeInputs.length) {
+    codeInputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length === 1 && index < 5) codeInputs[index + 1].focus();
+        });
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !this.value && index > 0) codeInputs[index - 1].focus();
+        });
+        input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const paste = (e.clipboardData || window.clipboardData).getData('text');
+            const digits = paste.replace(/[^0-9]/g, '').slice(0, 6);
+            for (let i = 0; i < digits.length && i < 6; i++) codeInputs[i].value = digits[i];
+            if (digits.length > 0) {
+                const nextIndex = Math.min(digits.length, 5);
+                codeInputs[nextIndex].focus();
+            }
+        });
+    });
+}
+
+function getCodeFromInputs() { let code = ''; codeInputs.forEach(inp => code += inp.value); return code; }
+function clearCodeInputs() { codeInputs.forEach(inp => inp.value = ''); if (codeInputs[0]) codeInputs[0].focus(); }
+
+// ============================================================
+// КОД ДЛЯ УДАЛЕНИЯ
+// ============================================================
+const deleteCodeInputs = document.querySelectorAll('.delete-code-box');
+if (deleteCodeInputs.length) {
+    deleteCodeInputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length === 1 && index < 5) deleteCodeInputs[index + 1].focus();
+        });
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !this.value && index > 0) deleteCodeInputs[index - 1].focus();
+        });
+        input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const paste = (e.clipboardData || window.clipboardData).getData('text');
+            const digits = paste.replace(/[^0-9]/g, '').slice(0, 6);
+            for (let i = 0; i < digits.length && i < 6; i++) deleteCodeInputs[i].value = digits[i];
+            if (digits.length > 0) {
+                const nextIndex = Math.min(digits.length, 5);
+                deleteCodeInputs[nextIndex].focus();
+            }
+        });
+    });
+}
+
+function getDeleteCodeFromInputs() { let code = ''; deleteCodeInputs.forEach(inp => code += inp.value); return code; }
+function clearDeleteCodeInputs() { deleteCodeInputs.forEach(inp => inp.value = ''); if (deleteCodeInputs[0]) deleteCodeInputs[0].focus(); }
+
+// ============================================================
+// ТОКЕНЫ — ИСПРАВЛЕННЫЕ
+// ============================================================
+function getUserBonuses(email) {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email);
+    return user ? user.bonuses || 0 : 0;
+}
+
+function updateUserBonuses(email, newBonuses) {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const index = users.findIndex(u => u.email === email);
+    if (index !== -1) {
+        users[index].bonuses = newBonuses;
+        localStorage.setItem('users', JSON.stringify(users));
+        updateTokensDisplay();
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (user) updateUI(user);
+    }
+}
+
+function getDiscount(email) {
+    const bonuses = getUserBonuses(email);
+    return Math.min(Math.floor(bonuses / 100) * 10, 50);
+}
+
+function addTokensForBooking(email) {
+    const currentBonuses = getUserBonuses(email);
+    const newBonuses = currentBonuses + 20;
+    updateUserBonuses(email, newBonuses);
+    console.log('✅ +20 токенов! Было:', currentBonuses, 'Стало:', newBonuses);
+    return { success: true, message: '✨ +20 токенов за бронь!' };
+}
+
+function calculateDiscountAndTokens(price, email) {
+    const tokens = getUserBonuses(email);
+    const discountPercent = Math.min(Math.floor(tokens / 100) * 10, 50);
+    const discountAmount = Math.round(price * (discountPercent / 100));
+    const finalPrice = price - discountAmount;
+    const tokensToSpend = Math.min(tokens, discountPercent * 10);
+    return { tokens, discountPercent, discountAmount, finalPrice, tokensToSpend };
+}
+
+function spendTokens(email, amount) {
+    if (amount <= 0) return;
+    const currentBonuses = getUserBonuses(email);
+    const newBonuses = Math.max(0, currentBonuses - amount);
+    updateUserBonuses(email, newBonuses);
+}
+
+function refundTokens(email, spentTokens) {
+    if (!spentTokens || spentTokens <= 0) return 0;
+    const refundAmount = Math.floor(spentTokens * 0.9);
+    const currentBonuses = getUserBonuses(email);
+    updateUserBonuses(email, currentBonuses + refundAmount);
+    return refundAmount;
+}
+
+function generateBookingKey(email, date, pc, time) {
+    const timeClean = time.replace(':', '');
+    return 'booking_' + email + '_' + date + '_pc' + pc + '_' + timeClean;
+}
+
+function saveTokensSpent(email, date, pc, time, tokensSpent) {
+    const key = generateBookingKey(email, date, pc, time);
+    localStorage.setItem(key, String(tokensSpent));
+}
+
+function getTokensSpentByData(email, date, pc, time) {
+    const key = generateBookingKey(email, date, pc, time);
+    const value = localStorage.getItem(key);
+    return value ? parseInt(value) : 0;
+}
+
+function removeTokensSpentByData(email, date, pc, time) {
+    const key = generateBookingKey(email, date, pc, time);
+    localStorage.removeItem(key);
+}
+
+function updateTokensDisplay() {
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const tokensDisplay = document.getElementById('bookingTokensCount');
+    const dropdownBalance = document.getElementById('dropdownBalance');
+    
+    if (!user) {
+        if (tokensDisplay) tokensDisplay.textContent = '0';
+        if (dropdownBalance) dropdownBalance.innerHTML = '<i class="fa-solid fa-coins"></i> 0 бонусов';
+        return;
+    }
+    
+    const tokens = getUserBonuses(user.email) || 0;
+    if (tokensDisplay) tokensDisplay.textContent = tokens;
+    if (dropdownBalance) {
+        dropdownBalance.innerHTML = '<i class="fa-solid fa-coins"></i> ' + tokens + ' бонусов';
+    }
+    
+    const useToggle = document.getElementById('useTokensToggle');
+    if (useToggle && useToggle.checked) updateDiscount();
+}
+
+// ============================================================
+// ПК
+// ============================================================
+const PC_LIST = Array.from({ length: 10 }, (_, i) => ({
+    id: i + 1,
+    name: `ПК №${i + 1}`,
+    spec: ['RTX 4080', 'RTX 4080', 'RTX 4090', 'RTX 4090', 'RTX 4080', 'RTX 4070 Ti', 'RTX 4080', 'RTX 4090', 'RTX 4070 Ti', 'RTX 4080'][i]
+}));
+
+let selectedPC = null;
+
+function addHours(timeStr, hours) {
+    const [h, m] = timeStr.split(':').map(Number);
+    const total = h + hours;
+    const nh = total % 24;
+    return `${String(nh).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+}
+
+// ============================================================
+// БРОНИРОВАНИЯ
+// ============================================================
+function renderBookings() {
+    const list = document.getElementById('bookingList');
+    if (!list) return;
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) {
+        list.innerHTML = '<p style="color:rgba(255,255,255,0.3);">Войдите, чтобы увидеть свои брони</p>';
+        return;
+    }
+    apiRequest('/bookings/' + DEVICE_ID, 'GET')
+        .then(data => {
+            if (!data.success || !data.bookings || data.bookings.length === 0) {
+                list.innerHTML = '<p style="color:rgba(255,255,255,0.3);">Нет активных бронирований</p>';
+                return;
+            }
+            list.innerHTML = data.bookings.map(b => {
+                const endTime = addHours(b.time, b.duration);
+                let typeLabel = 'Час';
+                let typeColor = '#6c63ff';
+                if (b.duration === 10 && b.time === '22:00') {
+                    typeLabel = '🌙 Ночь';
+                    typeColor = '#00d4ff';
+                } else if (b.duration === 24 && b.time === '00:00') {
+                    typeLabel = '🎉 Выходные';
+                    typeColor = '#ffd700';
+                }
+                return `
+                    <div class="booking-item" 
+                         data-id="${b.id}"
+                         data-pc="${b.pc}"
+                         data-date="${b.date}"
+                         data-time="${b.time}"
+                         style="background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 18px; margin-bottom:8px; border:1px solid rgba(255,255,255,0.04); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                        <div class="booking-info" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:14px;">
+                            <strong style="color:#fff;">ПК №${b.pc}</strong>
+                            <span style="color:rgba(255,255,255,0.6);">${b.date}</span>
+                            <span style="color:rgba(255,255,255,0.6);">${b.time} - ${endTime}</span>
+                            <span style="color:#00d4ff; font-weight:600;">${b.duration}ч</span>
+                            <span style="background:${typeColor}22; color:${typeColor}; padding:2px 12px; border-radius:20px; font-size:12px; font-weight:600;">${typeLabel}</span>
+                            ${b.comment ? `<span style="color:rgba(255,255,255,0.3); font-size:12px;">${b.comment}</span>` : ''}
+                            ${b.tokens_spent > 0 ? `<span style="color:#ffd700; font-size:12px;">🪙 -${b.tokens_spent} токенов</span>` : ''}
+                        </div>
+                        <button onclick="cancelBooking(${b.id})" style="color:#ff6b6b; cursor:pointer; background:rgba(255,107,107,0.08); border:1px solid rgba(255,107,107,0.1); border-radius:8px; padding:6px 14px; font-size:13px; transition:0.3s;">
+                            <i class="fa-solid fa-xmark"></i> Отменить
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        })
+        .catch(() => {
+            list.innerHTML = '<p style="color:rgba(255,255,255,0.3);">Ошибка загрузки броней</p>';
+        });
+}
+
+function cancelBooking(bookingId) {
+    const bookingItem = document.querySelector(`.booking-item[data-id="${bookingId}"]`);
+    function showCancelModalWithData(bookingData) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            animation: fadeInModal 0.3s ease;
+        `;
+        const box = document.createElement('div');
+        box.style.cssText = `
+            background: #1a1a2e; border: 1px solid rgba(255,107,107,0.2);
+            border-radius: 20px; padding: 40px; max-width: 400px; width: 90%;
+            text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideUpModal 0.3s ease;
+        `;
+        box.innerHTML = `
+            <i class="fa-solid fa-triangle-exclamation" style="font-size:48px; color:#ff6b6b; margin-bottom:16px;"></i>
+            <h3 style="color: #fff; font-size: 20px; margin-bottom: 12px;">Отменить бронь?</h3>
+            <p style="color: rgba(255,255,255,0.5); font-size: 15px; margin-bottom: 24px; line-height:1.5;">
+                Вы уверены, что хотите отменить бронирование?<br>
+                <span style="color:rgba(255,255,255,0.3); font-size:13px;">Возвращается 90% потраченных токенов</span>
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button id="confirmCancelYes" style="padding: 12px 32px; background: linear-gradient(135deg, #ff6b6b, #ee5a24); border: none; border-radius: 50px; color: #fff; font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.3s;">Да, отменить</button>
+                <button id="confirmCancelNo" style="padding: 12px 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; color: rgba(255,255,255,0.5); font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.3s;">Отмена</button>
+            </div>
+        `;
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes slideUpModal { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        `;
+        document.head.appendChild(style);
+        document.getElementById('confirmCancelYes').addEventListener('click', function() {
+            overlay.remove();
+            style.remove();
+            const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            let tokensSpent = 0;
+            if (bookingData && user) {
+                tokensSpent = getTokensSpentByData(user.email, bookingData.date, bookingData.pc, bookingData.time);
+            }
+            apiRequest('/bookings/cancel/' + bookingId, 'POST')
+                .then(data => {
+                    if (data.success) {
+                        let refundMessage = '';
+                        if (user && tokensSpent > 0) {
+                            const refunded = refundTokens(user.email, tokensSpent);
+                            refundMessage = '\n🪙 Возвращено ' + refunded + ' токенов (90% от ' + tokensSpent + ')';
+                            if (bookingData) {
+                                removeTokensSpentByData(user.email, bookingData.date, bookingData.pc, bookingData.time);
+                            }
+                        } else if (tokensSpent === 0) {
+                            refundMessage = '\n🪙 Токены не тратились';
+                        }
+                        showCustomModal('✅ Отменено', 'Бронирование отменено.' + refundMessage, 'success');
+                        renderBookings();
+                        renderPCGrid();
+                        updateTokensDisplay();
+                        updateBookingTabs();
+                        const userNow = JSON.parse(localStorage.getItem('currentUser') || 'null');
+                        if (userNow && bookNameInput) bookNameInput.value = userNow.name;
+                        selectedPC = null;
+                        document.getElementById('selectedPC').value = '';
+                        document.querySelectorAll('.pc-option').forEach(p => {
+                            p.classList.remove('selected');
+                            p.style.borderColor = 'rgba(255,255,255,0.06)';
+                        });
+                        const useToggle = document.getElementById('useTokensToggle');
+                        if (useToggle) {
+                            useToggle.checked = false;
+                            document.getElementById('discountInfo').style.display = 'none';
+                        }
+                    } else {
+                        showCustomModal('Ошибка', data.message || 'Не удалось отменить', 'error');
+                    }
+                });
+        });
+        document.getElementById('confirmCancelNo').addEventListener('click', function() {
+            overlay.remove();
+            style.remove();
+        });
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.remove();
+                style.remove();
+            }
+        });
+    }
+    if (bookingItem) {
+        const pc = parseInt(bookingItem.dataset.pc);
+        const date = bookingItem.dataset.date;
+        const time = bookingItem.dataset.time;
+        showCancelModalWithData({ pc, date, time });
+    } else {
+        apiRequest('/bookings/' + bookingId, 'GET')
+            .then(data => {
+                if (data.success && data.booking) {
+                    showCancelModalWithData(data.booking);
+                } else {
+                    showCancelModalWithData(null);
+                }
+            });
+    }
+}
+
+function renderPCGrid() {
+    const grid = document.getElementById('pcGrid');
+    if (!grid) return;
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) {
+        grid.innerHTML = '<p style="color:rgba(255,255,255,0.3);">Войдите, чтобы выбрать ПК</p>';
+        return;
+    }
+    apiRequest('/bookings/' + DEVICE_ID, 'GET')
+        .then(userData => {
+            const userBookings = userData.success && userData.bookings ? userData.bookings : [];
+            const hasActiveBooking = userBookings.length > 0;
+            apiRequest('/bookings/all', 'GET')
+                .then(allData => {
+                    const allBookings = allData.success && allData.bookings ? allData.bookings : [];
+                    grid.innerHTML = PC_LIST.map(pc => {
+                        const isOccupied = allBookings.some(b =>
+                            b.pc === pc.id && b.status === 'active' && b.device_id !== DEVICE_ID
+                        );
+                        const isUserBooking = userBookings.some(b => b.pc === pc.id && b.status === 'active');
+                        let status = 'available';
+                        let statusText = 'Свободен';
+                        let statusColor = '#51cf66';
+                        let isDisabled = false;
+                        if (isUserBooking) {
+                            status = 'user-booking';
+                            statusText = '✅ Ваша бронь';
+                            statusColor = '#00d4ff';
+                        } else if (isOccupied) {
+                            status = 'occupied';
+                            statusText = 'Занят';
+                            statusColor = '#ff6b6b';
+                            isDisabled = true;
+                        } else if (hasActiveBooking && !isUserBooking) {
+                            status = 'blocked';
+                            statusText = '🔒 У вас уже есть бронь';
+                            statusColor = '#ffa500';
+                            isDisabled = true;
+                        }
+                        return `
+                            <div class="pc-option ${status === 'user-booking' ? 'selected' : ''}" 
+                                data-pc="${pc.id}" 
+                                data-status="${status}"
+                                style="${isDisabled ? 'opacity:0.5; cursor:not-allowed;' : 'cursor:pointer;'}
+                                        ${status === 'user-booking' ? 'border-color:#00d4ff; background:rgba(0,212,255,0.1);' : ''}
+                                        background:rgba(255,255,255,0.03); 
+                                        border:2px solid ${isDisabled ? 'rgba(255,255,255,0.06)' : status === 'user-booking' ? '#00d4ff' : 'rgba(255,255,255,0.06)'};
+                                        border-radius:12px; 
+                                        padding:10px 6px; 
+                                        text-align:center; 
+                                        transition:0.3s;">
+                                <span class="pc-number" style="display:block; font-weight:700; font-size:14px; color:#fff;">№${pc.id}</span>
+                                <span class="pc-spec" style="display:block; font-size:10px; color:rgba(255,255,255,0.3); margin-top:2px;">${pc.spec}</span>
+                                <span style="display:block; font-size:10px; color:${statusColor}; margin-top:2px;">${statusText}</span>
+                            </div>
+                        `;
+                    }).join('');
+                    document.querySelectorAll('.pc-option').forEach(el => {
+                        el.addEventListener('click', function() {
+                            const status = this.dataset.status;
+                            if (status === 'occupied' || status === 'blocked') {
+                                showCustomModal('Ошибка', 'Этот ПК недоступен', 'error');
+                                return;
+                            }
+                            document.querySelectorAll('.pc-option').forEach(p => {
+                                p.classList.remove('selected');
+                                p.style.borderColor = 'rgba(255,255,255,0.06)';
+                            });
+                            this.classList.add('selected');
+                            this.style.borderColor = '#6c63ff';
+                            selectedPC = parseInt(this.dataset.pc);
+                            document.getElementById('selectedPC').value = selectedPC;
+                        });
+                    });
+                });
+        })
+        .catch(() => {
+            grid.innerHTML = '<p style="color:rgba(255,255,255,0.3);">Ошибка загрузки ПК</p>';
+        });
+}
+
+function updatePrice() {
+    const activeTab = document.querySelector('.booking-tab.active');
+    const slot = activeTab ? activeTab.dataset.slot : 'hour';
+    let price = 0;
+    let priceText = '';
+    if (slot === 'hour') {
+        const durationEl = document.getElementById('bookDurationHour');
+        const hours = parseInt(durationEl ? durationEl.value : 1);
+        price = hours * 150;
+        priceText = price + ' ₽';
+    } else if (slot === 'night') {
+        price = 1500;
+        priceText = '1500 ₽ (ночь)';
+    } else if (slot === 'weekend') {
+        price = 1000;
+        priceText = '1000 ₽ (день)';
+    }
+    const totalPriceEl = document.getElementById('totalPrice');
+    if (totalPriceEl) totalPriceEl.textContent = priceText;
+    const useToggle = document.getElementById('useTokensToggle');
+    if (useToggle && useToggle.checked) updateDiscount();
+}
+
+function updateDiscount() {
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) return;
+    const price = getCurrentPrice();
+    const result = calculateDiscountAndTokens(price, user.email);
+    const tokensToUseEl = document.getElementById('tokensToUse');
+    const discountPercentEl = document.getElementById('discountPercent');
+    const discountPriceEl = document.getElementById('discountPrice');
+    const discountInfoEl = document.getElementById('discountInfo');
+    const totalPriceEl = document.getElementById('totalPrice');
+    if (tokensToUseEl) tokensToUseEl.textContent = result.tokensToSpend + ' токенов';
+    if (discountPercentEl) discountPercentEl.textContent = result.discountPercent + '%';
+    if (discountPriceEl) discountPriceEl.textContent = result.finalPrice + ' ₽';
+    if (discountInfoEl) discountInfoEl.style.display = 'block';
+    if (totalPriceEl) {
+        if (result.discountPercent > 0) {
+            totalPriceEl.textContent = result.finalPrice + ' ₽ (скидка ' + result.discountPercent + '%)';
+        } else {
+            totalPriceEl.textContent = price + ' ₽';
+        }
+    }
+}
+
+function getCurrentPrice() {
+    const activeTab = document.querySelector('.booking-tab.active');
+    const slot = activeTab ? activeTab.dataset.slot : 'hour';
+    let price = 0;
+    if (slot === 'hour') {
+        const durationEl = document.getElementById('bookDurationHour');
+        const hours = parseInt(durationEl ? durationEl.value : 1);
+        price = hours * 150;
+    } else if (slot === 'night') {
+        price = 1500;
+    } else if (slot === 'weekend') {
+        price = 1000;
+    }
+    return price;
+}
+
+function updateBookingTabs() {
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) return;
+    apiRequest('/bookings/' + DEVICE_ID, 'GET')
+        .then(data => {
+            const hasActive = data.success && data.bookings && data.bookings.length > 0;
+            document.querySelectorAll('.booking-tab').forEach(tab => {
+                const isActive = tab.classList.contains('active');
+                if (hasActive && !isActive) {
+                    tab.style.opacity = '0.4';
+                    tab.style.cursor = 'not-allowed';
+                    tab.title = 'У вас уже есть активная бронь';
+                } else {
+                    tab.style.opacity = '1';
+                    tab.style.cursor = 'pointer';
+                    tab.title = '';
+                }
+            });
+            const submitBtn = document.getElementById('bookingSubmitBtn');
+            if (submitBtn) {
+                if (hasActive) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = '🔒 У вас уже есть бронь';
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Забронировать сейчас';
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                }
+            }
+        });
+}
+
+// ============================================================
+// ТАБЫ
+// ============================================================
+document.querySelectorAll('.booking-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (!user) {
+            showCustomModal('Ошибка', 'Войдите в аккаунт', 'error');
+            if (loginBtn) loginBtn.click();
+            return;
+        }
+        apiRequest('/bookings/' + DEVICE_ID, 'GET')
+            .then(data => {
+                const hasActive = data.success && data.bookings && data.bookings.length > 0;
+                const isActiveTab = this.classList.contains('active');
+                if (hasActive && !isActiveTab) {
+                    showCustomModal('Ошибка', 'У вас уже есть активная бронь. Отмените её, чтобы выбрать другой слот.', 'error');
+                    return;
+                }
+                document.querySelectorAll('.booking-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.slot-content').forEach(s => s.classList.remove('active'));
+                const slot = this.dataset.slot;
+                document.getElementById('slot-' + slot).classList.add('active');
+                updatePrice();
+                updateBookingTabs();
+                updateTokensDisplay();
+            });
+    });
+});
+
+// ============================================================
+// ФОРМА БРОНИРОВАНИЯ
+// ============================================================
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (!user) {
+            showCustomModal('Ошибка', 'Войдите в аккаунт', 'error');
+            if (loginBtn) loginBtn.click();
+            return;
+        }
+        const activeTab = document.querySelector('.booking-tab.active');
+        const slot = activeTab ? activeTab.dataset.slot : 'hour';
+        let date, time, duration, price;
+        if (slot === 'hour') {
+            date = document.getElementById('bookDateHour')?.value;
+            time = document.getElementById('bookTimeHour')?.value;
+            duration = parseInt(document.getElementById('bookDurationHour')?.value || 1);
+            price = duration * 150;
+            if (!date) {
+                showCustomModal('Ошибка', 'Выберите дату для часовой брони', 'error');
+                return;
+            }
+            if (!time) {
+                showCustomModal('Ошибка', 'Выберите время (с 17:00 до 23:00)', 'error');
+                return;
+            }
+        } else if (slot === 'night') {
+            date = document.getElementById('bookDateNight')?.value;
+            time = '22:00';
+            duration = 10;
+            price = 1500;
+            if (!date) {
+                showCustomModal('Ошибка', 'Выберите дату для ночной брони', 'error');
+                return;
+            }
+        } else if (slot === 'weekend') {
+            date = document.getElementById('bookDateWeekend')?.value;
+            time = '00:00';
+            duration = 24;
+            price = 1000;
+            if (!date) {
+                showCustomModal('Ошибка', 'Выберите дату для выходных', 'error');
+                return;
+            }
+        }
+        const pc = document.getElementById('selectedPC').value;
+        if (!pc) {
+            showCustomModal('Ошибка', 'Выберите компьютер', 'error');
+            return;
+        }
+        const useTokens = document.getElementById('useTokensToggle')?.checked || false;
+        let finalPrice = price;
+        let tokensSpent = 0;
+        let discountPercent = 0;
+        if (useTokens) {
+            const result = calculateDiscountAndTokens(price, user.email);
+            finalPrice = result.finalPrice;
+            tokensSpent = result.tokensToSpend;
+            discountPercent = result.discountPercent;
+            if (tokensSpent > 0) spendTokens(user.email, tokensSpent);
+        }
+        apiRequest('/bookings/' + DEVICE_ID, 'GET')
+            .then(checkData => {
+                if (checkData.success && checkData.bookings && checkData.bookings.length > 0) {
+                    showCustomModal('Ошибка', 'У вас уже есть активная бронь', 'error');
+                    return;
+                }
+                const bookingData = {
+                    user_email: user.email,
+                    device_id: DEVICE_ID,
+                    pc: parseInt(pc),
+                    date: date,
+                    time: time,
+                    duration: duration,
+                    comment: document.getElementById('bookComment').value.trim(),
+                    price: price,
+                    final_price: finalPrice,
+                    tokens_spent: tokensSpent,
+                    discount_percent: discountPercent
+                };
+                apiRequest('/bookings', 'POST', bookingData).then(result => {
+                    if (result.success) {
+                        if (tokensSpent > 0) {
+                            saveTokensSpent(user.email, date, pc, time, tokensSpent);
+                        }
+                        const endTime = addHours(time, duration);
+                        const bonusResult = addTokensForBooking(user.email);
+                        const bonusMessage = '\n✨ ' + bonusResult.message;
+                        let message = 'ПК №' + pc + ' забронирован\n' +
+                            'С ' + time + ' до ' + endTime + ' (' + duration + ' ч)\n';
+                        if (useTokens && discountPercent > 0) {
+                            message += '💰 Скидка: ' + discountPercent + '%\n';
+                            message += '💳 Итоговая цена: ' + finalPrice + ' ₽\n';
+                            message += '🪙 Списано токенов: ' + tokensSpent + '\n';
+                        } else {
+                            message += '💰 Стоимость: ' + price + ' ₽\n';
+                        }
+                        message += bonusMessage;
+                        showCustomModal('✅ Бронирование создано!', message, 'success');
+                        document.getElementById('selectedPC').value = '';
+                        selectedPC = null;
+                        document.querySelectorAll('.pc-option').forEach(p => {
+                            p.classList.remove('selected');
+                            p.style.borderColor = 'rgba(255,255,255,0.06)';
+                        });
+                        updateTokensDisplay();
+                        renderBookings();
+                        renderPCGrid();
+                        updateBookingTabs();
+                        const useToggle = document.getElementById('useTokensToggle');
+                        if (useToggle) {
+                            useToggle.checked = false;
+                            document.getElementById('discountInfo').style.display = 'none';
+                        }
+                        updatePrice();
+                    } else {
+                        showCustomModal('Ошибка', result.message || 'Ошибка бронирования', 'error');
+                    }
+                });
+            });
+    });
+}
+
+// ============================================================
+// КОД ПОДТВЕРЖДЕНИЯ
+// ============================================================
+function generateCode() { return String(Math.floor(100000 + Math.random() * 900000)); }
+
+async function showCodeModal(title, desc, email, action, name = null, password = null) {
+    pendingEmail = email;
+    pendingAction = action;
+    pendingName = name;
+    pendingPassword = password;
+    if (codeModalTitle) codeModalTitle.textContent = title;
+    if (codeModalDesc) codeModalDesc.textContent = 'Отправляем код на ' + email + '...';
+    clearCodeInputs();
+    if (codeModal) codeModal.classList.add('active');
+    if (authModal) authModal.classList.remove('active');
+    currentCode = generateCode();
+    localStorage.setItem('tempCode_' + email, currentCode);
+    const sent = await sendCodeEmail(email, currentCode, action === 'register' ? 'Регистрация' : 'Вход');
+    if (sent) {
+        if (codeModalDesc) codeModalDesc.textContent = 'Код отправлен на ' + email + ' (проверьте папку Спам)';
+    } else {
+        if (codeModalDesc) codeModalDesc.textContent = 'Ошибка отправки. Попробуйте позже.';
+    }
+}
+
+// ============================================================
+// АВТОРИЗАЦИЯ — ИСПРАВЛЕННАЯ
+// ============================================================
+const authModal = document.getElementById('authModal');
+const codeModal = document.getElementById('codeModal');
+const deleteModal = document.getElementById('deleteModal');
+const loginBtn = document.getElementById('loginBtn');
+const closeModal = document.getElementById('closeModal');
+const closeCodeModal = document.getElementById('closeCodeModal');
+const closeDeleteModal = document.getElementById('closeDeleteModal');
+const submitCodeBtn = document.getElementById('submitCodeBtn');
+const resendCodeBtn = document.getElementById('resendCodeBtn');
+const submitDeleteBtn = document.getElementById('submitDeleteBtn');
+const resendDeleteCode = document.getElementById('resendDeleteCode');
+const codeModalTitle = document.getElementById('codeModalTitle');
+const codeModalDesc = document.getElementById('codeModalDesc');
+const userDropdown = document.getElementById('userDropdown');
+const dropdownMenu = document.getElementById('dropdownMenu');
+const bookNameInput = document.getElementById('bookName');
+const bookingFormWrapper = document.getElementById('bookingFormWrapper');
+const bookingLoginRequired = document.getElementById('bookingLoginRequired');
+
+let pendingAction = null;
+let pendingEmail = null;
+let pendingPassword = null;
+let pendingName = null;
+let currentCode = null;
+let deleteEmail = null;
+let deleteCode = null;
+
+// ===== ОБНОВЛЕНИЕ UI =====
+function updateUI(user) {
+    const loginBtn = document.getElementById('loginBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const dropdownUserName = document.getElementById('dropdownUserName');
+    const dropdownBalance = document.getElementById('dropdownBalance');
+    const bookNameInput = document.getElementById('bookName');
+    const tokensDisplay = document.getElementById('bookingTokensCount');
+
+    if (user) {
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (userDropdown) userDropdown.style.display = 'inline-block';
+        if (userNameDisplay) userNameDisplay.textContent = user.name;
+        if (dropdownUserName) dropdownUserName.textContent = user.name;
+        if (bookNameInput) bookNameInput.value = user.name;
+        const bonuses = getUserBonuses(user.email);
+        if (dropdownBalance) {
+            dropdownBalance.innerHTML = '<i class="fa-solid fa-coins"></i> ' + bonuses + ' бонусов';
+        }
+        if (tokensDisplay) tokensDisplay.textContent = bonuses;
+    } else {
+        if (loginBtn) loginBtn.style.display = 'inline-flex';
+        if (userDropdown) userDropdown.style.display = 'none';
+        if (dropdownMenu) dropdownMenu.classList.remove('active');
+        if (userNameDisplay) userNameDisplay.textContent = '';
+        if (dropdownUserName) dropdownUserName.textContent = '';
+        if (dropdownBalance) dropdownBalance.innerHTML = '<i class="fa-solid fa-coins"></i> 0 бонусов';
+        if (bookNameInput) bookNameInput.value = '';
+        if (tokensDisplay) tokensDisplay.textContent = '0';
+    }
+}
+
+function checkAuthForBooking() {
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (user) {
+        if (bookingFormWrapper) bookingFormWrapper.style.display = 'block';
+        if (bookingLoginRequired) bookingLoginRequired.style.display = 'none';
+        if (bookNameInput) bookNameInput.value = user.name;
+        renderPCGrid();
+        renderBookings();
+        updateUI(user);
+        updateBookingTabs();
+        updateTokensDisplay();
+    } else {
+        if (bookingFormWrapper) bookingFormWrapper.style.display = 'none';
+        if (bookingLoginRequired) bookingLoginRequired.style.display = 'block';
+        updateUI(null);
+    }
+}
+
+// ===== ПЕРЕКЛЮЧЕНИЕ ТАБОВ =====
+function switchAuthTab(tab) {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    tabBtns.forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+    if (tab === 'login') {
+        document.querySelector('.tab-btn[data-tab="login"]')?.classList.add('active');
+        if (loginForm) loginForm.classList.add('active');
+    } else if (tab === 'register') {
+        document.querySelector('.tab-btn[data-tab="register"]')?.classList.add('active');
+        if (registerForm) registerForm.classList.add('active');
+    }
+}
+
+// ===== КНОПКА ВОЙТИ =====
+if (loginBtn && authModal) {
+    const newBtn = loginBtn.cloneNode(true);
+    loginBtn.parentNode.replaceChild(newBtn, loginBtn);
+    newBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        authModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        switchAuthTab('login');
+    });
+}
+
+// ===== ЗАКРЫТИЕ МОДАЛКИ =====
+if (closeModal && authModal) {
+    closeModal.addEventListener('click', function() {
+        authModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}
+if (authModal) {
+    authModal.addEventListener('click', function(e) {
+        if (e.target === authModal) {
+            authModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// ===== ТАБЫ =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        switchAuthTab(this.dataset.tab);
+    });
+});
+
+// ===== ССЫЛКИ ПЕРЕКЛЮЧЕНИЯ =====
+document.querySelectorAll('.auth-switch a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        switchAuthTab(this.dataset.tab);
+    });
+});
+
+// ===== ФОРМА ВХОДА =====
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    const newForm = loginForm.cloneNode(true);
+    loginForm.parentNode.replaceChild(newForm, loginForm);
+    newForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail')?.value.trim();
+        const password = document.getElementById('loginPassword')?.value.trim();
+        if (!email || !password) {
+            showCustomModal('Ошибка', 'Заполните все поля', 'error');
+            return;
+        }
+        const checkResult = await apiRequest('/check-login', 'POST', { email, password });
+        if (!checkResult.success) {
+            showCustomModal('Ошибка', checkResult.message, 'error');
+            return;
+        }
+        showCodeModal('Подтверждение входа', 'Код отправлен на', email, 'login', null, password);
+    });
+}
+
+// ===== ФОРМА РЕГИСТРАЦИИ =====
+const registerForm = document.getElementById('registerForm');
+if (registerForm) {
+    const newForm = registerForm.cloneNode(true);
+    registerForm.parentNode.replaceChild(newForm, registerForm);
+    newForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const name = document.getElementById('regName')?.value.trim();
+        const email = document.getElementById('regEmail')?.value.trim();
+        const password = document.getElementById('regPassword')?.value.trim();
+        if (!name || !email || !password) {
+            showCustomModal('Ошибка', 'Заполните все поля', 'error');
+            return;
+        }
+        const checkResult = await apiRequest('/check-email', 'POST', { email, name });
+        if (!checkResult.success) {
+            showCustomModal('Ошибка', checkResult.message, 'error');
+            return;
+        }
+        showCodeModal('Подтверждение регистрации', 'Код отправлен на', email, 'register', name, password);
+    });
+}
+
+// ===== КОД ПОДТВЕРЖДЕНИЯ =====
+if (submitCodeBtn) {
+    submitCodeBtn.addEventListener('click', () => {
+        const enteredCode = getCodeFromInputs();
+        if (enteredCode.length < 6) {
+            showCustomModal('Ошибка', 'Введите все 6 цифр кода', 'error');
+            return;
+        }
+        const savedCode = localStorage.getItem('tempCode_' + pendingEmail);
+        if (enteredCode !== savedCode) {
+            showCustomModal('Ошибка', 'Неверный код. Попробуйте ещё раз.', 'error');
+            clearCodeInputs();
+            return;
+        }
+        if (pendingAction === 'register') {
+            apiRequest('/register', 'POST', {
+                name: pendingName,
+                email: pendingEmail,
+                password: pendingPassword
+            }).then(result => {
+                if (result.success) {
+                    showCustomModal('✅ Регистрация успешна!', 'Теперь войдите в аккаунт.', 'success');
+                    localStorage.removeItem('tempCode_' + pendingEmail);
+                    if (codeModal) codeModal.classList.remove('active');
+                    clearCodeInputs();
+                    switchAuthTab('login');
+                } else {
+                    showCustomModal('Ошибка', result.message, 'error');
+                }
+            });
+        } else if (pendingAction === 'login') {
+            apiRequest('/login', 'POST', {
+                email: pendingEmail,
+                password: pendingPassword
+            }).then(result => {
+                if (result.success) {
+                    localStorage.setItem('currentUser', JSON.stringify(result.user));
+                    localStorage.removeItem('tempCode_' + pendingEmail);
+                    if (codeModal) codeModal.classList.remove('active');
+                    clearCodeInputs();
+                    checkAuthForBooking();
+                    updateTokensDisplay();
+                    updateUI(result.user);
+                    showCustomModal('👋 Добро пожаловать!', result.user.name + ', вы успешно вошли.', 'success');
+                } else {
+                    showCustomModal('Ошибка', result.message, 'error');
+                }
+            });
+        }
+    });
+}
+
+// ============================================================
+// ДРОПДАУН
+// ============================================================
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.user-dropdown') && !e.target.closest('#loginBtn')) {
+        if (dropdownMenu) dropdownMenu.classList.remove('active');
+    }
+});
+
+const userProfileBtn = document.getElementById('userProfileBtn');
+if (userProfileBtn) {
+    userProfileBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (dropdownMenu) dropdownMenu.classList.toggle('active');
+    });
+}
+
+const userNameDisplay = document.getElementById('userNameDisplay');
+const dropdownUserName = document.getElementById('dropdownUserName');
+const dropdownBalance = document.getElementById('dropdownBalance');
+
+// ============================================================
+// ВЫХОД
+// ============================================================
+const profileLogout = document.getElementById('profileLogout');
+if (profileLogout) {
+    profileLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (dropdownMenu) dropdownMenu.classList.remove('active');
+        localStorage.removeItem('currentUser');
+        checkAuthForBooking();
+        updateTokensDisplay();
+        showCustomModal('До свидания!', 'Вы вышли из аккаунта.', 'info');
+    });
+}
+
+// ============================================================
+// ПУНКТЫ ПРОФИЛЯ
+// ============================================================
+document.getElementById('profileDashboard')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (dropdownMenu) dropdownMenu.classList.remove('active');
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) return;
+    showCustomModal('📊 Панель управления',
+        '👤 Имя: ' + user.name +
+        '\n📧 Email: ' + user.email +
+        '\n🪙 Бонусов: ' + getUserBonuses(user.email) +
+        '\n🎯 Скидка: ' + getDiscount(user.email) + '%',
+        'info'
+    );
+});
+
+document.getElementById('profileBookings')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (dropdownMenu) dropdownMenu.classList.remove('active');
+    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('profileHistory')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (dropdownMenu) dropdownMenu.classList.remove('active');
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) {
+        showCustomModal('Ошибка', 'Вы не авторизованы', 'error');
+        return;
+    }
+    const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    const userBookings = bookings.filter(b => b.user === user.name || b.email === user.email);
+    if (userBookings.length === 0) {
+        showCustomModal('📋 История', 'У вас пока нет бронирований.', 'info');
+        return;
+    }
+    const historyText = userBookings.map(b =>
+        `${b.date} ${b.time} - ПК №${b.pc} (${b.duration}ч) [${b.status}]`
+    ).join('\n');
+    showCustomModal('📋 История броней', historyText, 'info');
+});
+
+document.getElementById('profileStats')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (dropdownMenu) dropdownMenu.classList.remove('active');
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) return;
+    showCustomModal('📊 Статистика',
+        'Бонусов: ' + getUserBonuses(user.email) +
+        '\nСкидка: ' + getDiscount(user.email) + '%',
+        'info'
+    );
+});
+
+document.getElementById('profileDiscount')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (dropdownMenu) dropdownMenu.classList.remove('active');
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) return;
+    const bonuses = getUserBonuses(user.email);
+    const discount = getDiscount(user.email);
+    showCustomModal('🎁 Скидка',
+        'Бонусов: ' + bonuses +
+        '\nТекущая скидка: ' + discount + '%' +
+        '\n\nКаждые 100 бонусов = 10% скидки' +
+        '\nМаксимальная скидка: 50%',
+        'info'
+    );
+});
+
+// ============================================================
+// УДАЛЕНИЕ АККАУНТА
+// ============================================================
+document.getElementById('profileDelete')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (dropdownMenu) dropdownMenu.classList.remove('active');
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (!user) {
+        showCustomModal('Ошибка', 'Вы не авторизованы.', 'error');
+        return;
+    }
+    deleteEmail = user.email;
+    showDeleteCodeModal();
+});
+
+async function showDeleteCodeModal() {
+    if (!deleteModal) {
+        showCustomModal('Ошибка', 'Модалка удаления не найдена', 'error');
+        return;
+    }
+    deleteModal.classList.add('active');
+    clearDeleteCodeInputs();
+    deleteCode = generateCode();
+    localStorage.setItem('deleteCode_' + deleteEmail, deleteCode);
+    const sent = await sendCodeEmail(deleteEmail, deleteCode, 'Удаление аккаунта');
+    if (!sent) {
+        showCustomModal('Ошибка', 'Не удалось отправить код на почту', 'error');
+        deleteModal.classList.remove('active');
+    }
+}
+
+if (submitDeleteBtn) {
+    submitDeleteBtn.addEventListener('click', () => {
+        const enteredCode = getDeleteCodeFromInputs();
+        if (enteredCode.length < 6) {
+            showCustomModal('Ошибка', 'Введите все 6 цифр кода', 'error');
+            return;
+        }
+        const savedCode = localStorage.getItem('deleteCode_' + deleteEmail);
+        if (enteredCode !== savedCode) {
+            showCustomModal('Ошибка', 'Неверный код. Попробуйте ещё раз.', 'error');
+            clearDeleteCodeInputs();
+            return;
+        }
+        apiRequest('/delete-account', 'POST', { email: deleteEmail }).then(result => {
+            if (result.success) {
+                localStorage.removeItem('deleteCode_' + deleteEmail);
+                localStorage.removeItem('currentUser');
+                if (deleteModal) deleteModal.classList.remove('active');
+                clearDeleteCodeInputs();
+                showCustomModal('✅ Аккаунт удалён', 'Ваш аккаунт был полностью удалён.', 'success');
+                checkAuthForBooking();
+                updateTokensDisplay();
+            } else {
+                showCustomModal('Ошибка', result.message, 'error');
+            }
+        });
+    });
+}
+
+if (resendDeleteCode) {
+    resendDeleteCode.addEventListener('click', async() => {
+        if (!deleteEmail) return;
+        deleteCode = generateCode();
+        localStorage.setItem('deleteCode_' + deleteEmail, deleteCode);
+        const sent = await sendCodeEmail(deleteEmail, deleteCode, 'Удаление аккаунта');
+        if (sent) {
+            showCustomModal('✅ Код отправлен', 'Новый код отправлен на ' + deleteEmail, 'success');
+        } else {
+            showCustomModal('Ошибка', 'Не удалось отправить код', 'error');
+        }
+        clearDeleteCodeInputs();
+    });
+}
+
+// ============================================================
+// РАСКРЫТИЕ ИГР
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const showBtn = document.getElementById('showAllGamesBtn');
+    const hideBtn = document.getElementById('hideGamesBtn');
+    const hideWrapper = document.getElementById('hideGamesBtnWrapper');
+    const hiddenGames = document.getElementById('gamesHidden');
+
+    if (showBtn && hiddenGames) {
+        showBtn.addEventListener('click', function() {
+            hiddenGames.classList.add('open');
+            this.style.display = 'none';
+            hideWrapper.style.display = 'block';
+        });
+        if (hideBtn) {
+            hideBtn.addEventListener('click', function() {
+                hiddenGames.classList.remove('open');
+                hideWrapper.style.display = 'none';
+                showBtn.style.display = 'inline-block';
+            });
+        }
+    }
+
+    // ===== FLATPICKR =====
+    const commonConfig = {
+        dateFormat: 'd.m.Y',
+        locale: 'ru',
+        allowInput: false,
+        disableMobile: true,
+        static: true,
+        theme: 'dark',
+        clickOpens: true
+    };
+
+    const hourInput = document.getElementById('bookDateHour');
+    if (hourInput) {
+        flatpickr(hourInput, {
+            ...commonConfig,
+            minDate: 'today',
+            onChange: function(selectedDates, dateStr) {
+                hourInput.dataset.selected = dateStr;
+                updatePrice();
+            }
+        });
+    }
+
+    const nightInput = document.getElementById('bookDateNight');
+    if (nightInput) {
+        flatpickr(nightInput, {
+            ...commonConfig,
+            minDate: 'today',
+            onChange: function(selectedDates, dateStr) {
+                nightInput.dataset.selected = dateStr;
+            }
+        });
+    }
+
+    const weekendInput = document.getElementById('bookDateWeekend');
+    if (weekendInput) {
+        flatpickr(weekendInput, {
+            ...commonConfig,
+            minDate: 'today',
+            disable: [function(date) { return date.getDay() !== 0 && date.getDay() !== 6; }],
+            onChange: function(selectedDates, dateStr) {
+                weekendInput.dataset.selected = dateStr;
+            }
+        });
+    }
+
+    // ===== ТОГГЛЕР СКИДКИ =====
+    const useToggle = document.getElementById('useTokensToggle');
+    if (useToggle) {
+        useToggle.addEventListener('change', function() {
+            if (this.checked) {
+                updateDiscount();
+            } else {
+                document.getElementById('discountInfo').style.display = 'none';
+                updatePrice();
+            }
+        });
+    }
+
+    // ===== ОБНОВЛЕНИЕ =====
+    document.getElementById('bookDurationHour')?.addEventListener('change', function() {
+        updatePrice();
+        updateTokensDisplay();
+    });
+    document.getElementById('bookTimeHour')?.addEventListener('change', function() {
+        updatePrice();
+    });
+
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    updateTokensDisplay();
+    checkAuthForBooking();
+    updateUI(user);
+});
+
+// ============================================================
+// ПОДСКАЗКА О ТОКЕНАХ
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const helpBtn = document.getElementById('tokensHelpBtn');
+    if (helpBtn) {
+        helpBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showTokensTooltip();
+        });
+    }
+});
+
+function showTokensTooltip() {
+    const oldTooltip = document.querySelector('.tokens-tooltip-overlay');
+    if (oldTooltip) oldTooltip.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'tokens-tooltip-overlay active';
+
+    overlay.innerHTML = `
+        <div class="tokens-tooltip">
+            <button class="tokens-tooltip-close" id="tokensTooltipClose">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="tokens-tooltip-icon">
+                <i class="fa-solid fa-coins"></i>
+            </div>
+            <h3>Что такое токены?</h3>
+            <p>
+                Токены — это <span class="highlight">бонусные баллы</span>, которые вы получаете 
+                за бронирование компьютеров в нашем клубе.
+            </p>
+            <div class="divider"></div>
+            <div class="rules">
+                <span>
+                    <i class="fa-solid fa-plus"></i>
+                    <span><span class="highlight">+20 токенов</span> за каждую бронь</span>
+                </span>
+                <span>
+                    <i class="fa-solid fa-percent"></i>
+                    <span><span class="highlight-purple">100 токенов = 10% скидки</span> 
+                    (максимум 50%)</span>
+                </span>
+                <span>
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>При отмене брони возвращается <span class="highlight">90%</span> потраченных токенов</span>
+                </span>
+                <span>
+                    <i class="fa-solid fa-gift"></i>
+                    <span>Токенами можно оплатить <span class="highlight-purple">скидку</span> при бронировании</span>
+                </span>
+            </div>
+            <div class="divider"></div>
+            <p style="font-size:13px; text-align:center; color:rgba(255,255,255,0.2); margin-bottom:0;">
+                Чем больше броней — тем больше токенов и выше скидка! 🚀
+            </p>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('#tokensTooltipClose').addEventListener('click', function() {
+        overlay.remove();
+    });
+
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            overlay.remove();
+        }
+    });
+}
+
+// ============================================================
+// АКТИВНЫЕ ПУНКТЫ МЕНЮ
+// ============================================================
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.head');
+    if (header) header.classList.toggle('scrolled', window.scrollY > 50);
+
+    const sections = ['hero', 'pricing', 'booking', 'contacts', 'why-us', 'gallery', 'games'];
+    let current = '';
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top <= 150) current = id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+});
+
+// ============================================================
+// АНИМАЦИИ
+// ============================================================
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.15 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+console.log('✅ Пиксель загружен!');
+console.log('📱 Device ID:', DEVICE_ID);
+    </script>
+</body>
+
+</html>
