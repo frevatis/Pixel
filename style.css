@@ -151,6 +151,138 @@ body {
     filter: drop-shadow(0 0 20px rgba(108,99,255,0.3));
     animation: pulse 2s ease-in-out infinite;
 }
+/* ============================================================
+   УВЕЛИЧЕНИЕ БЛОКА БРОНИРОВАНИЯ НА ТЕЛЕФОНЕ
+   ============================================================ */
+
+@media (max-width: 600px) {
+    /* ===== САМ БЛОК ===== */
+    .booking-card {
+        padding: 24px 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 16px !important;
+        margin: 0 4px !important;
+    }
+    
+    .booking .container {
+        padding: 0 8px !important;
+        max-width: 100% !important;
+    }
+    
+    /* ===== ТАБЫ ===== */
+    .booking-tabs {
+        gap: 6px !important;
+        padding: 6px !important;
+    }
+    
+    .booking-tab {
+        flex: 1 !important;
+        min-width: 0 !important;
+        padding: 12px 6px !important;
+        font-size: 13px !important;
+        border-radius: 10px !important;
+    }
+    
+    .booking-tab i {
+        font-size: 14px !important;
+    }
+    
+    /* ===== ПОЛЯ ВВОДА ===== */
+    .form-group label {
+        font-size: 15px !important;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 16px 18px !important;
+        font-size: 17px !important;
+        border-radius: 12px !important;
+    }
+    
+    .form-row {
+        gap: 16px !important;
+    }
+    
+    /* ===== ВЫБОР ПК ===== */
+    .pc-select-grid {
+        gap: 10px !important;
+    }
+    
+    .pc-option {
+        padding: 14px 6px !important;
+        border-radius: 12px !important;
+    }
+    
+    .pc-option .pc-number {
+        font-size: 16px !important;
+    }
+    
+    .pc-option .pc-spec {
+        font-size: 11px !important;
+    }
+    
+    /* ===== ТОКЕНЫ ===== */
+    .tokens-section {
+        padding: 18px 20px !important;
+        margin: 18px 0 !important;
+        border-radius: 16px !important;
+    }
+    
+    .tokens-icon {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 28px !important;
+    }
+    
+    .tokens-count {
+        font-size: 30px !important;
+    }
+    
+    .tokens-label {
+        font-size: 14px !important;
+    }
+    
+    /* ===== ЦЕНА ===== */
+    .booking-price span {
+        font-size: 18px !important;
+    }
+    
+    .booking-price strong {
+        font-size: 28px !important;
+    }
+    
+    /* ===== КНОПКА ЗАБРОНИРОВАТЬ ===== */
+    .booking button[type="submit"],
+    #bookingSubmitBtn {
+        padding: 18px !important;
+        font-size: 20px !important;
+        border-radius: 14px !important;
+    }
+    
+    /* ===== ИСТОРИЯ ===== */
+    #bookingHistory h3 {
+        font-size: 18px !important;
+    }
+    
+    .booking-item {
+        padding: 16px 18px !important;
+        border-radius: 14px !important;
+    }
+    
+    .booking-info {
+        font-size: 15px !important;
+        gap: 10px !important;
+    }
+    
+    .booking-info strong {
+        font-size: 16px !important;
+    }
+    
+    .booking-info span {
+        font-size: 14px !important;
+    }
+}
 .logo span {
     font-weight: 900;
     font-size: 28px;
