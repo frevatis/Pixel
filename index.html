@@ -1028,21 +1028,148 @@ const DEVICE_ID = getDeviceId();
 // ============================================================
 // API
 // ============================================================
-const API_URL = 'null';
+// ============================================================
+// API — РАБОТА БЕЗ СЕРВЕРА (LOCALSTORAGE)
+// ============================================================
+
+const API_URL = null;
 
 async function apiRequest(endpoint, method = 'POST', data = null) {
-    const options = {
-        method: method,
-        headers: { 'Content-Type': 'application/json' }
-    };
-    if (data) options.body = JSON.stringify(data);
-    try {
-        const response = await fetch(API_URL + endpoint, options);
-        return await response.json();
-    } catch (error) {
-        console.error('API Error:', error);
-        return { success: false, message: 'Ошибка соединения с сервером' };
+    console.log('📦 API (локальный):', endpoint, data);
+    
+    // Имитация задержки
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    // ===== ПОЛУЧИТЬ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ =====
+    function getUsers() {
+        return JSON.parse(localStorage.getItem('users') || '[]');
     }
+    
+    function saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+    
+    function getBookings() {
+        return JSON.parse(localStorage.getItem('bookings') || '[]');
+    }
+    
+    function saveBookings(bookings) {
+        localStorage.setItem('bookings', JSON.stringify(bookings));
+    }
+    
+    // ===== ПРОВЕРКА EMAIL =====
+    if (endpoint === '/check-email') {
+        const users = getUsers();
+        const exists = users.some(u => u.email === data.email);
+        if (exists) {
+            return { success: false, message: 'Пользователь с таким email уже существует' };
+        }
+        return { success: true };
+    }
+    
+    // ===== РЕГИСТРАЦИЯ =====
+    if (endpoint === '/register') {
+        const users = getUsers();
+        users.push({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            bonuses: 0
+        });
+        saveUsers(users);
+        return { success: true };
+    }
+    
+    // ===== ПРОВЕРКА ВХОДА =====
+    if (endpoint === '/check-login') {
+        const users = getUsers();
+        const user = users.find(u => u.email === data.email && u.password === data.password);
+        if (!user) {
+            return { success: false, message: 'Неверный email или пароль' };
+        }
+        return { success: true, user: { name: user.name, email: user.email } };
+    }
+    
+    // ===== ВХОД =====
+    if (endpoint === '/login') {
+        const users = getUsers();
+        const user = users.find(u => u.email === data.email && u.password === data.password);
+        if (!user) {
+            return { success: false, message: 'Неверный email или пароль' };
+        }
+        return { 
+            success: true, 
+            user: { 
+                name: user.name, 
+                email: user.email, 
+                bonuses: user.bonuses || 0 
+            } 
+        };
+    }
+    
+    // ===== БРОНИРОВАНИЯ =====
+    if (endpoint.includes('/bookings')) {
+        const bookings = getBookings();
+        
+        // GET — получить все брони
+        if (method === 'GET') {
+            // Если запрос на конкретную бронь
+            if (endpoint !== '/bookings/' + DEVICE_ID && endpoint !== '/bookings/all') {
+                // Пока не реализовано
+            }
+            return { success: true, bookings: bookings };
+        }
+        
+        // POST — создать бронь
+        if (method === 'POST') {
+            const newBooking = {
+                id: Date.now(),
+                ...data,
+                status: 'active',
+                created_at: new Date().toISOString()
+            };
+            bookings.push(newBooking);
+            saveBookings(bookings);
+            return { 
+                success: true, 
+                booking: newBooking,
+                bonus_added: true
+            };
+        }
+    }
+    
+    // ===== ОТМЕНА БРОНИ =====
+    if (endpoint.includes('/cancel')) {
+        let bookings = getBookings();
+        const id = parseInt(endpoint.split('/').pop());
+        bookings = bookings.filter(b => b.id !== id);
+        saveBookings(bookings);
+        return { success: true };
+    }
+    
+    // ===== УДАЛЕНИЕ АККАУНТА =====
+    if (endpoint === '/delete-account') {
+        let users = getUsers();
+        users = users.filter(u => u.email !== data.email);
+        saveUsers(users);
+        return { success: true };
+    }
+    
+    // ===== ВСЕ БРОНИ (для отображения ПК) =====
+    if (endpoint === '/bookings/all') {
+        const bookings = getBookings();
+        return { success: true, bookings: bookings };
+    }
+    
+    // ===== БРОНИ ПО DEVICE_ID =====
+    if (endpoint === '/bookings/' + DEVICE_ID) {
+        const bookings = getBookings();
+        const userBookings = bookings.filter(b => b.device_id === DEVICE_ID && b.status === 'active');
+        return { success: true, bookings: userBookings };
+    }
+    
+    console.warn('⚠️ Неизвестный endpoint:', endpoint);
+    return { success: true };
 }
 
 // ============================================================
