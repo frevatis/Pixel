@@ -2897,3 +2897,28 @@ section:last-of-type { border-bottom: none; }
         font-size: 16px !important;
     }
 }
+/* ============================================================
+   ИСПРАВЛЕНИЕ СКРОЛЛА НА ТЕЛЕФОНЕ
+   ============================================================ */
+html, body {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    position: relative !important;
+}
+
+body {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* Убираем блокировку скролла у всех секций */
+section {
+    overflow: visible !important;
+}
+
+.hero {
+    min-height: 100vh !important;
+    height: auto !important;
+}
